@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="description" content="Interactive ODE exercises developed by Dr. Shir Sivroni for The Open University of Israel">
+<meta name="keywords" content="ODE, differential equations, mathematics, Open University, Shir Sivroni">
+<title>Dr. Shir Sivroni - Open University</title>
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shir-openu.github.io/openu-landing/">
+<meta property="og:title" content="Dr. Shir Sivroni - Interactive ODE Exercises | Open University">
+<meta property="og:description" content="Interactive Ordinary Differential Equations exercises with AI tutoring for Open University students. Developed by Dr. Shir Sivroni - Neuroscience Researcher & Mathematics Lecturer.">
+<meta property="og:site_name" content="Dr. Shir Sivroni - Open University">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shir-openu.github.io/openu-landing/">
+<meta property="twitter:title" content="Dr. Shir Sivroni - Interactive ODE Exercises">
+<meta property="twitter:description" content="Interactive mathematics learning tools by Dr. Shir Sivroni">
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/openu-landing/">
+
+<!-- Author & Copyright -->
+<meta name="copyright" content="Dr. Shir Sivroni, The Open University of Israel">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dr. Shir Sivroni",
+  "jobTitle": [
+    "Neuroscience Researcher",
+    "Mathematics Lecturer"
+  ],
+  "affiliation": {
+    "@type": "Organization",
+    "name": "The Open University of Israel"
+  },
+  "knowsAbout": ["Neuroscience", "Mathematics", "Set Theoretic Topology", "Logic"],
+  "description": "Neuroscience researcher and mathematics lecturer at The Open University of Israel, developing interactive mathematical learning tools"
+}
+</script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: #120a12;
+    color: #e5e7eb;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* אנימציית רקע - גלים מתמטיים */
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  .wave-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .wave path {
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .wave-teal path {
+    stroke: #169999;
+    animation: wave-drift-1 25s ease-in-out infinite;
+  }
+
+  .wave-pink path {
+    stroke: #ff4db8;
+    animation: wave-drift-2 30s ease-in-out infinite;
+  }
+
+  .wave-wine path {
+    stroke: #990f23;
+    animation: wave-drift-3 35s ease-in-out infinite;
+  }
+
+  @keyframes wave-drift-1 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-25%) translateY(-5%); }
+  }
+
+  @keyframes wave-drift-2 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-30%) translateY(8%); }
+  }
+
+  @keyframes wave-drift-3 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-20%) translateY(-8%); }
+  }
+
+  /* חלקיקים צפים */
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  .particle-teal {
+    background: #169999;
+    animation: float-teal 20s ease-in-out infinite;
+  }
+
+  .particle-pink {
+    background: #ff4db8;
+    animation: float-pink 25s ease-in-out infinite;
+  }
+
+  .particle-wine {
+    background: #990f23;
+    animation: float-wine 30s ease-in-out infinite;
+  }
+
+  @keyframes float-teal {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.3; }
+    50% { transform: translate(100px, -150px); opacity: 0.5; }
+  }
+
+  @keyframes float-pink {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.4; }
+    50% { transform: translate(-120px, -180px); opacity: 0.6; }
+  }
+
+  @keyframes float-wine {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.35; }
+    50% { transform: translate(80px, 200px); opacity: 0.5; }
+  }
+
+  /* שכבת גרדיאנט עדינה */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(22, 153, 153, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  nav {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+
+  .logo-line {
+    display: block;
+  }
+
+  .logo-copyright {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .hero {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 0;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 28px;
+    max-width: 1000px;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    background: rgba(17, 24, 39, 0.5);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.08;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  .card:hover::before {
+    opacity: 0.15;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .card-desc {
+    font-size: 1rem;
+    color: #9aa6b2;
+    line-height: 1.5;
+  }
+
+  .card-teaching {
+    border-color: rgba(255, 77, 184, 0.3);
+  }
+  .card-teaching::before {
+    background: #ff4db8;
+  }
+  .card-teaching:hover {
+    border-color: rgba(255, 77, 184, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 80px 0;
+    }
+    .container {
+      padding: 0 20px;
+    }
+    .cards-grid {
+      gap: 20px;
+    }
+    .card {
+      padding: 20px 16px;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- אנימציית רקע -->
+  <div class="animated-background">
+    <div class="wave-container">
+      <!-- גלים מתמטיים -->
+      <svg class="wave wave-teal" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,300 Q150,200 300,300 T600,300 T900,300 T1200,300 T1500,300 T1800,300" />
+        <path d="M0,320 Q150,380 300,320 T600,320 T900,320 T1200,320 T1500,320 T1800,320" />
+      </svg>
+      
+      <svg class="wave wave-pink" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,250 Q200,150 400,250 T800,250 T1200,250 T1600,250 T2000,250" />
+        <path d="M0,350 Q200,450 400,350 T800,350 T1200,350 T1600,350 T2000,350" />
+      </svg>
+      
+      <svg class="wave wave-wine" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,280 Q180,380 360,280 T720,280 T1080,280 T1440,280 T1800,280" />
+        <path d="M0,380 Q180,280 360,380 T720,380 T1080,380 T1440,380 T1800,380" />
+      </svg>
+    </div>
+
+    <!-- חלקיקים צפים -->
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <span class="logo-line">The Open University Of Israel</span>
+        <span class="logo-line">Introduction to ODE - 20218</span>
+        <span class="logo-line">Digital Friend Projects</span>
+        <span class="logo-line logo-copyright">© The Open University of Israel | Developed by Shir Sivroni</span>
+      </div>
+    </nav>
+
+    <section class="hero">
+     <div class="cards-grid">
+  <a href="https://shir-openu.github.io/ODE-20218-2nd-DF1/" class="card card-teaching">
+    <div class="card-content">
+      <div class="card-title">Exercise 1 - Second Order ODEs</div>
+      <div class="card-desc">Digital Friend - Practice solving differential equations with AI assistance</div>
+    </div>
+  </a>
+  
+  <a href="https://shir-openu.github.io/ODE-20218-2nd-DF2/" class="card card-teaching">
+    <div class="card-content">
+      <div class="card-title">Exercise 2 - Second Order ODEs</div>
+      <div class="card-desc">Digital Friend - Solve y'' + y = e^x with AI guidance</div>
+    </div>
+  </a>
+
+  <a href="https://shir-openu.github.io/ODE-20218-2nd-DF-3/" class="card card-teaching">
+    <div class="card-content">
+      <div class="card-title">Exercise 3 - Variation of Parameters</div>
+      <div class="card-desc">Digital Friend - Solve y'' - 4y' + 4y = (e^x/x)² with repeated roots</div>
+    </div>
+  </a>
+
+  <a href="https://shir-openu.github.io/ODE-20218-2nd-DF4/" class="card card-teaching">
+    <div class="card-content">
+      <div class="card-title">Exercise 4 - Fourth Order ODE</div>
+      <div class="card-desc">Digital Friend - Solve y⁽⁴⁾ + 2y'' + y = x² + 2x + 1 with undetermined coefficients</div>
+    </div>
+  </a>
+</div>
+    </section>
+  </div>
+
+  <script>
+    // יצירת חלקיקים צפים
+    const particlesContainer = document.getElementById('particles');
+    const colors = ['teal', 'pink', 'wine'];
+    
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = `particle particle-${colors[i % 3]}`;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+  </script>
+</body>
+</html>

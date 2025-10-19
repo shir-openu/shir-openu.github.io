@@ -1,0 +1,13 @@
+        <a href="https://shir-openu.github.io/ODE-20218-2nd-DF1/" class="card card-teaching">
+          <div class="card-content">
+            <div class="card-title">Exercise 1 - Second Order ODEs</div>
+            <div class="card-desc">Digital Friend - Practice solving differential equations with AI assistance</div>
+          </div>
+        </a>
+        
+        <a href="https://shir-openu.github.io/ODE-20218-2nd-DF2/" class="card card-teaching">
+          <div class="card-content">
+            <div class="card-title">Exercise 2 - Second Order ODEs</div>
+            <div class="card-desc">Digital Friend - Solve y'' + y = e^x with AI guidance</div>
+          </div>
+        </a>
