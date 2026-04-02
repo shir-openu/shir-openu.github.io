@@ -27,6 +27,11 @@ body {
 .header p { color: #555; font-size: 0.9em; margin-top: 4px; }
 
 .section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+.demos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 .demo {
   background: #fff;
   border: 1px solid #ddd;
@@ -35,7 +40,6 @@ body {
   text-decoration: none;
   color: inherit;
   display: block;
-  max-width: 450px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .demo:hover {
@@ -46,6 +50,7 @@ body {
 .demo .demo-desc { font-size: 0.85em; color: #555; margin-bottom: 10px; }
 .demo .demo-tags { font-size: 0.75em; color: #0e76a8; font-weight: 600; }
 
+@media (max-width: 650px) { .demos { grid-template-columns: 1fr; } }
 .footer {
   text-align: center;
   padding: 24px 20px;
@@ -67,11 +72,51 @@ body {
 </div>
 
 <div class="section">
-  <a class="demo" href="https://shir-openu.github.io/kids-identify-the-angle-en/" target="_blank">
-    <div class="demo-title">Identify the Angle</div>
-    <div class="demo-desc">Interactive geometry game: children identify acute, right, obtuse, and straight angles with colorful visual feedback and scoring.</div>
-    <div class="demo-tags">JavaScript, SVG, Education, Geometry</div>
-  </a>
+  <div class="demos">
+
+    <a class="demo" href="https://shir-openu.github.io/kids-identify-the-angle-en/" target="_blank">
+      <div class="demo-title">Identify the Angle</div>
+      <div class="demo-desc">Identify acute, right, obtuse, and straight angles with colorful visual feedback and scoring.</div>
+      <div class="demo-tags">Geometry, Angles, SVG</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-Q-1-2-3-en/" target="_blank">
+      <div class="demo-title">Calculating Angles</div>
+      <div class="demo-desc">Practice angle calculations with interactive diagrams and step-by-step guidance.</div>
+      <div class="demo-tags">Geometry, Angles</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-overlapping-triangles-1-en/" target="_blank">
+      <div class="demo-title">Triangle Congruence</div>
+      <div class="demo-desc">Explore overlapping triangles and identify congruence criteria interactively.</div>
+      <div class="demo-tags">Geometry, Triangles, Congruence</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-lots-of-triangles-en/" target="_blank">
+      <div class="demo-title">Quadrilaterals &amp; Diagonals</div>
+      <div class="demo-desc">Find triangles in quadrilaterals with diagonals. Multi-page interactive exercises.</div>
+      <div class="demo-tags">Geometry, Quadrilaterals, Triangles</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-2025-en/" target="_blank">
+      <div class="demo-title">Hanukkah Math Assignment</div>
+      <div class="demo-desc">8th grade math: angles, parallel lines, pricing problems, and data analysis.</div>
+      <div class="demo-tags">Geometry, Algebra, Data Analysis</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-part-3b-en/" target="_blank">
+      <div class="demo-title">Hanukkah Part 3b — Shapes</div>
+      <div class="demo-desc">Squares, quadrilaterals, and coordinate geometry exercises.</div>
+      <div class="demo-tags">Geometry, Coordinates</div>
+    </a>
+
+    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-part-3c-en/" target="_blank">
+      <div class="demo-title">Hanukkah Part 3c — Lines &amp; Kites</div>
+      <div class="demo-desc">Lines, triangles, and kite geometry exercises with interactive SVG.</div>
+      <div class="demo-tags">Geometry, Triangles, Kites</div>
+    </a>
+
+  </div>
 </div>
 
 <div class="footer">&copy; Developed by Shir Sivroni</div>
