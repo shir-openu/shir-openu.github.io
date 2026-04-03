@@ -8,118 +8,358 @@
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f5f6f8;
-  color: #1a1a1a;
-  line-height: 1.6;
-}
-.header {
-  background: #fff;
-  border-bottom: 3px solid #0e76a8;
-  padding: 30px 20px;
-}
-.header-inner { max-width: 900px; margin: 0 auto; }
-.back { font-size: 0.85em; color: #0e76a8; text-decoration: none; }
-.back:hover { text-decoration: underline; }
-.header h1 { font-size: 1.4em; margin-top: 8px; }
-.header p { color: #555; font-size: 0.9em; margin-top: 4px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-.demos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.demo {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 24px;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.demo:hover {
-  border-color: #0e76a8;
-  box-shadow: 0 4px 16px rgba(14, 118, 168, 0.12);
-}
-.demo .demo-title { font-weight: 700; font-size: 1.1em; margin-bottom: 8px; }
-.demo .demo-desc { font-size: 0.85em; color: #555; margin-bottom: 10px; }
-.demo .demo-tags { font-size: 0.75em; color: #0e76a8; font-weight: 600; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+    color: #e5e7eb;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-@media (max-width: 650px) { .demos { grid-template-columns: 1fr; } }
-.footer {
-  text-align: center;
-  padding: 24px 20px;
-  font-size: 0.8em;
-  color: #999;
-  border-top: 1px solid #e5e5e5;
-  margin-top: 40px;
-}
+  /* === STARS === */
+  .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* === MOON === */
+  .moon {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    font-size: 60px;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* === SPARKLES === */
+  .sparkle {
+    position: fixed;
+    font-size: 20px;
+    z-index: 0;
+    pointer-events: none;
+    animation: sparkle 2.5s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+  .sparkle:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 25%; right: 12%; animation-delay: 0.7s; }
+  .sparkle:nth-child(3) { bottom: 20%; left: 5%; animation-delay: 1.4s; }
+  .sparkle:nth-child(4) { bottom: 35%; right: 8%; animation-delay: 2.1s; }
+
+  /* === SHOOTING STARS === */
+  .shooting-star {
+    position: fixed;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: rotate(-35deg);
+    animation: shoot 6s ease-in-out infinite;
+  }
+  .shooting-star::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255,255,255,0.6);
+  }
+  @keyframes shoot {
+    0% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+    2% { opacity: 1; }
+    8% { opacity: 0; transform: rotate(-35deg) translateX(-300px); }
+    100% { opacity: 0; }
+  }
+  .shooting-star:nth-child(5) { top: 15%; left: 70%; animation-delay: 1s; }
+  .shooting-star:nth-child(6) { top: 35%; left: 50%; animation-delay: 4s; width: 60px; }
+  .shooting-star:nth-child(7) { top: 55%; left: 80%; animation-delay: 8s; width: 100px; }
+
+  /* === FLOATING SPACE ITEMS === */
+  .space-item {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    animation: bob 5s ease-in-out infinite;
+    opacity: 0.6;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  nav {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-link {
+    color: #9aa6b2;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: #ffffff; }
+
+  .page-title {
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .welcome-msg {
+    text-align: center;
+    padding: 10px 0 30px;
+    font-size: 1.1rem;
+    color: #9aa6b2;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0 80px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    display: block;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.08;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  .card:hover::before { opacity: 0.15; }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .card-content { position: relative; z-index: 1; }
+
+  .card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: #9aa6b2;
+    line-height: 1.5;
+  }
+
+  .card-teal { border-color: rgba(22, 153, 153, 0.3); }
+  .card-teal::before { background: #169999; }
+  .card-teal:hover { border-color: rgba(22, 153, 153, 0.5); }
+
+  .card-pink { border-color: rgba(255, 77, 184, 0.3); }
+  .card-pink::before { background: #ff4db8; }
+  .card-pink:hover { border-color: rgba(255, 77, 184, 0.5); }
+
+  .card-wine { border-color: rgba(153, 15, 35, 0.3); }
+  .card-wine::before { background: #990f23; }
+  .card-wine:hover { border-color: rgba(153, 15, 35, 0.5); }
+
+  .card-purple { border-color: rgba(139, 92, 246, 0.3); }
+  .card-purple::before { background: #8b5cf6; }
+  .card-purple:hover { border-color: rgba(139, 92, 246, 0.5); }
+
+  .footer {
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .card { padding: 20px 16px; }
+    .moon { font-size: 40px; top: 20px; right: 20px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-inner">
-    <a href="../" class="back">Back to Portfolio</a>
-    <h1>Kids Math Games</h1>
-    <p>Educational geometry games for children</p>
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Moon -->
+  <div class="moon">&#127769;</div>
+
+  <!-- Shooting stars -->
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+
+  <!-- Space items -->
+  <div class="space-item" style="bottom:12%; left:4%; animation-delay:0s; font-size:22px;">&#127776;</div>
+  <div class="space-item" style="top:20%; left:5%; animation-delay:1.5s; font-size:18px;">&#11088;</div>
+  <div class="space-item" style="bottom:30%; right:4%; animation-delay:0.8s; font-size:20px;">&#127775;</div>
+  <div class="space-item" style="top:65%; right:5%; animation-delay:2.2s; font-size:16px;">&#10059;</div>
+
+  <!-- Sparkles -->
+  <div class="sparkle">&#10024;</div>
+  <div class="sparkle">&#10024;</div>
+  <div class="sparkle">&#10024;</div>
+  <div class="sparkle">&#10024;</div>
+
+  <div class="container">
+    <nav>
+      <a href="../" class="back-link">Back to Portfolio</a>
+      <span class="page-title">Kids Math Games</span>
+    </nav>
+
+    <div class="welcome-msg">Interactive geometry exercises — click a card to start!</div>
+
+    <section class="hero">
+      <div class="cards-grid">
+
+        <a href="https://shir-openu.github.io/kids-identify-the-angle-en/" class="card card-teal" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x25B3;</div>
+            <div class="card-title">Identify the Angle</div>
+            <div class="card-desc">Spot acute, right, obtuse, and straight angles with colorful feedback and scoring.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-hanuka-Q-1-2-3-en/" class="card card-pink" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x2220;</div>
+            <div class="card-title">Calculating Angles</div>
+            <div class="card-desc">Practice angle calculations with interactive diagrams and step-by-step guidance.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-overlapping-triangles-1-en/" class="card card-purple" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x25E9;</div>
+            <div class="card-title">Triangle Congruence</div>
+            <div class="card-desc">Explore overlapping triangles and identify congruence criteria interactively.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-lots-of-triangles-en/" class="card card-wine" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x25C7;</div>
+            <div class="card-title">Quadrilaterals &amp; Diagonals</div>
+            <div class="card-desc">Find triangles in quadrilaterals with diagonals. Multi-page exercises.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-hanuka-2025-en/" class="card card-teal" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x2605;</div>
+            <div class="card-title">8th Grade Math Mix</div>
+            <div class="card-desc">Angles, parallel lines, pricing problems, and data analysis.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-hanuka-part-3b-en/" class="card card-pink" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x25A1;</div>
+            <div class="card-title">Shapes &amp; Coordinates</div>
+            <div class="card-desc">Squares, quadrilaterals, and coordinate geometry exercises.</div>
+          </div>
+        </a>
+
+        <a href="https://shir-openu.github.io/kids-hanuka-part-3c-en/" class="card card-purple" target="_blank">
+          <div class="card-content">
+            <div class="card-icon">&#x2B21;</div>
+            <div class="card-title">Lines &amp; Kites</div>
+            <div class="card-desc">Lines, triangles, and kite geometry exercises with interactive SVG.</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
   </div>
-</div>
 
-<div class="section">
-  <div class="demos">
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
 
-    <a class="demo" href="https://shir-openu.github.io/kids-identify-the-angle-en/" target="_blank">
-      <div class="demo-title">Identify the Angle</div>
-      <div class="demo-desc">Identify acute, right, obtuse, and straight angles with colorful visual feedback and scoring.</div>
-      <div class="demo-tags">Geometry, Angles, SVG</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-Q-1-2-3-en/" target="_blank">
-      <div class="demo-title">Calculating Angles</div>
-      <div class="demo-desc">Practice angle calculations with interactive diagrams and step-by-step guidance.</div>
-      <div class="demo-tags">Geometry, Angles</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-overlapping-triangles-1-en/" target="_blank">
-      <div class="demo-title">Triangle Congruence</div>
-      <div class="demo-desc">Explore overlapping triangles and identify congruence criteria interactively.</div>
-      <div class="demo-tags">Geometry, Triangles, Congruence</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-lots-of-triangles-en/" target="_blank">
-      <div class="demo-title">Quadrilaterals &amp; Diagonals</div>
-      <div class="demo-desc">Find triangles in quadrilaterals with diagonals. Multi-page interactive exercises.</div>
-      <div class="demo-tags">Geometry, Quadrilaterals, Triangles</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-2025-en/" target="_blank">
-      <div class="demo-title">Hanukkah Math Assignment</div>
-      <div class="demo-desc">8th grade math: angles, parallel lines, pricing problems, and data analysis.</div>
-      <div class="demo-tags">Geometry, Algebra, Data Analysis</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-part-3b-en/" target="_blank">
-      <div class="demo-title">Hanukkah Part 3b — Shapes</div>
-      <div class="demo-desc">Squares, quadrilaterals, and coordinate geometry exercises.</div>
-      <div class="demo-tags">Geometry, Coordinates</div>
-    </a>
-
-    <a class="demo" href="https://shir-openu.github.io/kids-hanuka-part-3c-en/" target="_blank">
-      <div class="demo-title">Hanukkah Part 3c — Lines &amp; Kites</div>
-      <div class="demo-desc">Lines, triangles, and kite geometry exercises with interactive SVG.</div>
-      <div class="demo-tags">Geometry, Triangles, Kites</div>
-    </a>
-
-  </div>
-</div>
-
-<div class="footer">&copy; Developed by Shir Sivroni</div>
+  <script>
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
 
 </body>
 </html>
