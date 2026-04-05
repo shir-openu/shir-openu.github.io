@@ -1,97 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Small Demos — Shir Sivroni</title>
 <meta name="description" content="Interactive math and statistics demos by Shir Sivroni: equation solver, descriptive statistics, regression analysis.">
+<meta name="keywords" content="Shir Sivroni, math solver, statistics, regression, correlation, data visualization, JavaScript">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f5f6f8;
-  color: #1a1a1a;
-  line-height: 1.6;
-}
-.header {
-  background: #fff;
-  border-bottom: 3px solid #0e76a8;
-  padding: 30px 20px;
-}
-.header-inner { max-width: 900px; margin: 0 auto; }
-.back { font-size: 0.85em; color: #0e76a8; text-decoration: none; }
-.back:hover { text-decoration: underline; }
-.header h1 { font-size: 1.4em; margin-top: 8px; }
-.header p { color: #555; font-size: 0.9em; margin-top: 4px; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-.section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-.demos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-.demo {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 24px;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.demo:hover {
-  border-color: #0e76a8;
-  box-shadow: 0 4px 16px rgba(14, 118, 168, 0.12);
-}
-.demo .demo-title { font-weight: 700; font-size: 1.1em; margin-bottom: 8px; }
-.demo .demo-desc { font-size: 0.85em; color: #555; margin-bottom: 10px; }
-.demo .demo-tags { font-size: 0.75em; color: #0e76a8; font-weight: 600; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: #120a12;
+    color: #e5e7eb;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-.footer {
-  text-align: center;
-  padding: 24px 20px;
-  font-size: 0.8em;
-  color: #999;
-  border-top: 1px solid #e5e5e5;
-  margin-top: 40px;
-}
-@media (max-width: 750px) { .demos { grid-template-columns: 1fr; } }
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  .wave-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .wave path {
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .wave-teal path {
+    stroke: #169999;
+    animation: wave-drift-1 25s ease-in-out infinite;
+  }
+
+  .wave-pink path {
+    stroke: #ff4db8;
+    animation: wave-drift-2 30s ease-in-out infinite;
+  }
+
+  .wave-wine path {
+    stroke: #990f23;
+    animation: wave-drift-3 35s ease-in-out infinite;
+  }
+
+  @keyframes wave-drift-1 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-25%) translateY(-5%); }
+  }
+
+  @keyframes wave-drift-2 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-30%) translateY(8%); }
+  }
+
+  @keyframes wave-drift-3 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-20%) translateY(-8%); }
+  }
+
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  .particle-teal {
+    background: #169999;
+    animation: float-teal 20s ease-in-out infinite;
+  }
+
+  .particle-pink {
+    background: #ff4db8;
+    animation: float-pink 25s ease-in-out infinite;
+  }
+
+  .particle-wine {
+    background: #990f23;
+    animation: float-wine 30s ease-in-out infinite;
+  }
+
+  @keyframes float-teal {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.3; }
+    50% { transform: translate(100px, -150px); opacity: 0.5; }
+  }
+
+  @keyframes float-pink {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.4; }
+    50% { transform: translate(-120px, -180px); opacity: 0.6; }
+  }
+
+  @keyframes float-wine {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    10%, 90% { opacity: 0.35; }
+    50% { transform: translate(80px, 200px); opacity: 0.5; }
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(22, 153, 153, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  nav {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-link {
+    color: #9aa6b2;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: #ffffff;
+  }
+
+  .page-title {
+    font-size: 1.1rem;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0 80px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    background: rgba(17, 24, 39, 0.5);
+    display: block;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.08;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  .card:hover::before {
+    opacity: 0.15;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .card-desc {
+    font-size: 1rem;
+    color: #9aa6b2;
+    line-height: 1.5;
+  }
+
+  /* Card with sub-links (not itself a link) */
+  .card-static {
+    padding: 24px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    background: rgba(17, 24, 39, 0.5);
+  }
+
+  .card-static::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.08;
+    z-index: 0;
+  }
+
+  .card-static .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sub-links {
+    list-style: none;
+    margin-top: 12px;
+    padding: 0;
+  }
+
+  .sub-links li {
+    margin-bottom: 6px;
+  }
+
+  .sub-links a {
+    color: #9aa6b2;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+  }
+
+  .sub-links a:hover {
+    color: #ffffff;
+  }
+
+  /* Color variants */
+  .card-teal { border-color: rgba(22, 153, 153, 0.3); }
+  .card-teal::before { background: #169999; }
+  .card-teal:hover { border-color: rgba(22, 153, 153, 0.5); }
+
+  .card-pink { border-color: rgba(255, 77, 184, 0.3); }
+  .card-pink::before { background: #ff4db8; }
+  .card-pink:hover { border-color: rgba(255, 77, 184, 0.5); }
+
+  .card-wine { border-color: rgba(153, 15, 35, 0.3); }
+  .card-wine::before { background: #990f23; }
+  .card-wine:hover { border-color: rgba(153, 15, 35, 0.5); }
+
+  .card-purple { border-color: rgba(139, 92, 246, 0.3); }
+  .card-purple::before { background: #8b5cf6; }
+  .card-purple:hover { border-color: rgba(139, 92, 246, 0.5); }
+
+  .footer {
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 40px 0;
+    }
+    .container {
+      padding: 0 20px;
+    }
+    .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .card, .card-static {
+      padding: 20px 16px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-inner">
-    <a href="../" class="back">Back to Portfolio</a>
-    <h1>Small Demos</h1>
-    <p>Math problem solving and statistical analysis tools</p>
+  <div class="animated-background">
+    <div class="wave-container">
+      <svg class="wave wave-teal" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,300 Q150,200 300,300 T600,300 T900,300 T1200,300 T1500,300 T1800,300" />
+        <path d="M0,320 Q150,380 300,320 T600,320 T900,320 T1200,320 T1500,320 T1800,320" />
+      </svg>
+      <svg class="wave wave-pink" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,250 Q200,150 400,250 T800,250 T1200,250 T1600,250 T2000,250" />
+        <path d="M0,350 Q200,450 400,350 T800,350 T1200,350 T1600,350 T2000,350" />
+      </svg>
+      <svg class="wave wave-wine" viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <path d="M0,280 Q180,380 360,280 T720,280 T1080,280 T1440,280 T1800,280" />
+        <path d="M0,380 Q180,280 360,380 T720,380 T1080,380 T1440,380 T1800,380" />
+      </svg>
+    </div>
+    <div class="particles" id="particles"></div>
   </div>
-</div>
 
-<div class="section">
-  <div class="demos">
+  <div class="container">
+    <nav>
+      <a href="../" class="back-link">Back to Portfolio</a>
+      <span class="page-title">Small Demos</span>
+    </nav>
 
-    <a class="demo" href="https://shir-openu.github.io/math-solver/" target="_blank">
-      <div class="demo-title">Math Problem Solver</div>
-      <div class="demo-desc">Solve equations, compute derivatives and integrals. Supports symbolic algebra with step-by-step display.</div>
-      <div class="demo-tags">JavaScript, Algebrite, math.js</div>
-    </a>
+    <section class="hero">
+      <div class="cards-grid">
 
-    <a class="demo" href="https://shir-openu.github.io/stats-demo/" target="_blank">
-      <div class="demo-title">Descriptive Statistics</div>
-      <div class="demo-desc">Enter data and get mean, median, mode, standard deviation, variance, and distribution charts.</div>
-      <div class="demo-tags">JavaScript, Statistics, Charts</div>
-    </a>
+        <a href="https://shir-openu.github.io/math-solver/" class="card card-teal" target="_blank">
+          <div class="card-content">
+            <div class="card-title">Math Problem Solver</div>
+            <div class="card-desc">Solve equations, compute derivatives and integrals. Supports symbolic algebra with step-by-step display.</div>
+          </div>
+        </a>
 
-    <a class="demo" href="https://shir-openu.github.io/stats-analysis-demo/" target="_blank">
-      <div class="demo-title">Regression &amp; Correlation</div>
-      <div class="demo-desc">Linear regression, correlation coefficients, scatter plots with trend lines. Advanced statistical analysis.</div>
-      <div class="demo-tags">JavaScript, Statistics, Data Visualization</div>
-    </a>
+        <a href="https://shir-openu.github.io/stats-demo/" class="card card-pink" target="_blank">
+          <div class="card-content">
+            <div class="card-title">Descriptive Statistics</div>
+            <div class="card-desc">Enter data and get mean, median, mode, standard deviation, variance, and distribution charts.</div>
+          </div>
+        </a>
 
+        <a href="https://shir-openu.github.io/stats-analysis-demo/" class="card card-purple" target="_blank">
+          <div class="card-content">
+            <div class="card-title">Regression &amp; Correlation</div>
+            <div class="card-desc">Linear regression, correlation coefficients, scatter plots with trend lines. Advanced statistical analysis.</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
   </div>
-</div>
 
-<div class="footer">&copy; Developed by Shir Sivroni</div>
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+
+  <script>
+    const particlesContainer = document.getElementById('particles');
+    const colors = ['teal', 'pink', 'wine'];
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = `particle particle-${colors[i % 3]}`;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+  </script>
 
 </body>
 </html>
