@@ -1,8 +1,9 @@
-# robots.txt for openu-landing
-# Allow all search engines to index everything
-
-User-agent: *
-Allow: /
-
-# Sitemap location
-Sitemap: https://shir-openu.github.io/openu-landing/sitemap.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://shir-openu.github.io/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
