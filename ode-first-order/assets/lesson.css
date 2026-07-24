@@ -1,0 +1,215 @@
+/* Shared dark theme for the First-Order ODE animated lessons
+   Matches the portfolio hub pages (ode/, hopfield/): #120a12 background,
+   glass cards, teal / pink / wine / purple accents. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #120a12;
+  --text: #e5e7eb;
+  --muted: #9aa6b2;
+  --panel: rgba(17, 24, 39, 0.55);
+  --border: rgba(255, 255, 255, 0.1);
+  --teal: #2dd4d4;
+  --pink: #ff4db8;
+  --wine: #ff5a7a;
+  --purple: #a78bfa;
+  --amber: #fbbf24;
+  --green: #34d399;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(22, 153, 153, 0.04) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px 40px;
+}
+
+nav {
+  padding: 26px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.back-link:hover { color: #ffffff; }
+
+.page-tag {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin: 18px 0 6px;
+  line-height: 1.25;
+}
+
+.accent-bar {
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 10px 0 26px;
+}
+
+.theme-teal .accent-bar { background: linear-gradient(90deg, #169999, #2dd4d4); }
+.theme-pink .accent-bar { background: linear-gradient(90deg, #c2308f, #ff4db8); }
+.theme-wine .accent-bar { background: linear-gradient(90deg, #990f23, #ff5a7a); }
+.theme-purple .accent-bar { background: linear-gradient(90deg, #6d4fd8, #a78bfa); }
+
+section.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  padding: 26px 28px;
+  margin-bottom: 26px;
+}
+
+section.card h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+section.card p { margin-bottom: 14px; }
+section.card p:last-child { margin-bottom: 0; }
+
+.eq {
+  text-align: center;
+  margin: 16px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+/* two-column: text + animation panel */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-items: center;
+}
+
+.panel {
+  background: rgba(10, 8, 16, 0.55);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 6px 0;
+}
+
+.panel canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+}
+
+.panel canvas.square { aspect-ratio: 1 / 1; }
+.panel canvas.wide { aspect-ratio: 16 / 9; }
+
+.panel figcaption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-top: 8px;
+}
+
+.note {
+  border-left: 3px solid var(--teal);
+  background: rgba(22, 153, 153, 0.08);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+
+.note.pink   { border-left-color: var(--pink);   background: rgba(255, 77, 184, 0.07); }
+.note.wine   { border-left-color: var(--wine);   background: rgba(153, 15, 35, 0.14); }
+.note.purple { border-left-color: var(--purple); background: rgba(139, 92, 246, 0.09); }
+.note.amber  { border-left-color: var(--amber);  background: rgba(251, 191, 36, 0.07); }
+.note.green  { border-left-color: var(--green);  background: rgba(52, 211, 153, 0.08); }
+
+.note .note-title { font-weight: 650; margin-bottom: 6px; }
+
+table.classify {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95rem;
+}
+
+table.classify th, table.classify td {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.classify th {
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+}
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 20px;
+}
+
+.lesson-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s;
+}
+
+.lesson-nav a:hover { color: #ffffff; }
+
+.footer {
+  text-align: center;
+  padding: 24px 20px 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 760px) {
+  .container { padding: 0 18px 30px; }
+  .split { grid-template-columns: 1fr; }
+  h1 { font-size: 1.5rem; }
+  section.card { padding: 20px 18px; }
+}
