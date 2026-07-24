@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Orthogonal Families — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Families of curves meeting at right angles: lines, circles and radials, parabolas and ellipses. Original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/orthogonal-families-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-purple">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Geometric Aspects</span>
+  </nav>
+
+  <h1>Orthogonal Families</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>Two families of lines</h2>
+    <div class="split">
+      <div><p>The lines \( y - x = C \) (slope \( 1 \)) and \( y + x = C \) (slope \( -1 \)) meet everywhere at \( 90^{\circ} \): the slopes multiply to \( -1 \).</p></div>
+      <figure class="panel"><img src="media/orth_lines.gif" alt="Two families of lines" loading="lazy"><figcaption>Lines of slope \( 1 \) and \( -1 \) — orthogonal families</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Circles and radial lines</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/orth_circles.gif" alt="Circles and radial lines" loading="lazy"><figcaption>Concentric circles crossed at right angles by radials</figcaption></figure>
+      <div><p>The circles \( x^{2}+y^{2}=C \) satisfy \( y'=-x/y \); replacing the slope by \( -1/f \) gives \( y'=y/x \), whose solutions are the radial lines \( y=mx \).</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Exercise: parabolas and ellipses</h2>
+    <div class="split">
+      <div><p>The parabolas \( y^{2}=Cx \) have slope \( y/(2x) \). The orthogonal family solves \( y\,y'=-2x \):</p>
+      <div class="eq">\( x^{2} + \dfrac{y^{2}}{2} = C \)</div><p>— ellipses crossing every parabola at a right angle.</p></div>
+      <figure class="panel"><img src="media/orth_parabola_ellipse.gif" alt="Exercise: parabolas and ellipses" loading="lazy"><figcaption>Parabolas \( y^{2}=Cx \) and their orthogonal ellipses</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Isoclines and Nullclines — the Paraboloid — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Isoclines of y' = x^2 + y^2 via the paraboloid surface, with the original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/paraboloid-isoclines-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-teal">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Isoclines & Direction Fields</span>
+  </nav>
+
+  <h1>Isoclines and Nullclines — the Paraboloid</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>The slope surface from above</h2>
+    <div class="split">
+      <div><p>For</p><div class="eq">\( y' = x^{2} + y^{2} \)</div>
+      <p>the slope function \( f(x,y)=x^{2}+y^{2} \) is a paraboloid. Seen from above as a heat map, equal heights form circles around the origin.</p></div>
+      <figure class="panel"><img src="media/par_heatmap.png" alt="The slope surface from above" loading="lazy"><figcaption>Heat map of \( f(x,y)=x^{2}+y^{2} \): equal slope = circles</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Horizontal sections</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/par_sections.gif" alt="Horizontal sections" loading="lazy"><figcaption>Sections \( z=C \) of the paraboloid become the circle isoclines</figcaption></figure>
+      <div><p>Cutting the paraboloid at height \( C \) gives the level curve</p>
+      <div class="eq">\( x^{2}+y^{2}=C \)</div><p>— the isocline on which every solution has slope \( C \).</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Isoclines with their slope marks</h2>
+    <div class="split">
+      <div><p>On each circle we draw direction segments with that circle's slope: \( C=1 \Rightarrow 45^{\circ} \), \( C=2 \Rightarrow 63^{\circ} \), and so on — the farther from the origin, the steeper. The origin alone is the nullcline \( C=0 \).</p></div>
+      <figure class="panel"><img src="media/par_circle_isoclines.gif" alt="Isoclines with their slope marks" loading="lazy"><figcaption>Circle isoclines carrying constant-slope segments</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Solutions on the direction field</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/par_solutions_field.gif" alt="Solutions on the direction field" loading="lazy"><figcaption>Solution curves threading the direction field</figcaption></figure>
+      <div><p>With the field assembled, solution curves must run tangent to it at every point.</p></div>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

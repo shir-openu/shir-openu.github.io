@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Envelope of a One-Parameter Family — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="The envelope of a family of lines, found from phi = 0 and dphi/dc = 0. Original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/envelope-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-wine">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Geometric Aspects</span>
+  </nav>
+
+  <h1>Envelope of a One-Parameter Family</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>A family of lines and its envelope</h2>
+    <div class="split">
+      <div><p>For the lines</p>
+      <div class="eq">\( \dfrac{x}{c} + \dfrac{y}{1-c} = 1, \qquad 0 < c < 1, \)</div>
+      <p>solving \( \varphi=0 \) together with \( \partial\varphi/\partial c=0 \) gives \( x=c^{2},\; y=(1-c)^{2} \):</p>
+      <div class="eq">\( \sqrt{x} + \sqrt{y} = 1. \)</div>
+      <p>The envelope is tangent to every line of the family — the picture is classic string art.</p></div>
+      <figure class="panel"><img src="media/env_family_lines.gif" alt="A family of lines and its envelope" loading="lazy"><figcaption>The line family building its envelope \( \sqrt{x}+\sqrt{y}=1 \)</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>The astroid</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/env_astroid.gif" alt="The astroid" loading="lazy"><figcaption>Sliding segments tracing the astroid</figcaption></figure>
+      <div><p>For unit segments sliding with their ends on the axes,</p>
+      <div class="eq">\( \dfrac{x}{\cos\alpha} + \dfrac{y}{\sin\alpha} = 1, \)</div>
+      <p>the same procedure yields \( x=\cos^{3}\alpha,\; y=\sin^{3}\alpha \) — the astroid \( x^{2/3}+y^{2/3}=1 \).</p></div>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

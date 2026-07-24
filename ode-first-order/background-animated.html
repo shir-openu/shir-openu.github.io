@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Why Differential Equations? — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Five everyday phenomena modelled by differential equations, with the original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/background-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-pink">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Background</span>
+  </nav>
+
+  <h1>Why Differential Equations?</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>Radioactive decay</h2>
+    <div class="split">
+      <div><p>The decay rate is proportional to the amount present:</p><div class="eq">\( N' = -\lambda N. \)</div></div>
+      <figure class="panel"><img src="media/bg_decay.gif" alt="Radioactive decay" loading="lazy"><figcaption>Exponential decay of \( N(t) \)</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Free fall with drag</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/bg_free_fall.gif" alt="Free fall with drag" loading="lazy"><figcaption>A falling body approaching terminal velocity</figcaption></figure>
+      <div><p>Gravity accelerates, air resistance brakes:</p><div class="eq">\( v' = g - kv. \)</div><p>Velocity approaches a terminal value.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Spring oscillation</h2>
+    <div class="split">
+      <div><p>The restoring force is proportional to displacement:</p><div class="eq">\( x'' = -\omega^{2} x. \)</div></div>
+      <figure class="panel"><img src="media/bg_spring.gif" alt="Spring oscillation" loading="lazy"><figcaption>Harmonic motion of a mass on a spring</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Pendulum</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/bg_pendulum.gif" alt="Pendulum" loading="lazy"><figcaption>Pendulum motion</figcaption></figure>
+      <div><p>A swinging pendulum obeys</p><div class="eq">\( \theta'' + \tfrac{g}{L}\sin\theta = 0. \)</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Epidemic spread</h2>
+    <div class="split">
+      <div><p>Growth slows as the susceptible pool empties:</p><div class="eq">\( I' = rI\left(1 - \tfrac{I}{K}\right). \)</div></div>
+      <figure class="panel"><img src="media/bg_virus.gif" alt="Epidemic spread" loading="lazy"><figcaption>Logistic spread of an infection</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Existence Region  D  vs Solution Domain  D'  — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Three worked examples where the region of existence-uniqueness and the solutions' domain differ. Original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/d-dprime-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-teal">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Existence & Uniqueness</span>
+  </nav>
+
+  <h1>Existence Region \( D \) vs Solution Domain \( D' \)</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>Example: \( D \subset D' \)</h2>
+    <div class="split">
+      <div><p>For</p><div class="eq">\( y' - \dfrac{y}{x} = x \)</div>
+      <p>an integrating factor \( \mu = 1/x \) gives the general solution</p>
+      <div class="eq">\( y = x^{2} + Cx. \)</div>
+      <p>The theorem's conditions hold only on \( D=\{x \neq 0\} \), yet every solution is smooth on all of \( \mathbb{R} \): \( D \subset D' \).</p></div>
+      <figure class="panel"><img src="media/dd_parabola_family.gif" alt="Example:  D \subset D' " loading="lazy"><figcaption>The family \( y=x^{2}+Cx \) — smooth across \( x=0 \)</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Example: \( D' \subset D \)</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/dd_half_circles.gif" alt="Example:  D' \subset D " loading="lazy"><figcaption>Half-circle solutions of \( y'=-x/y \)</figcaption></figure>
+      <div><p>For</p><div class="eq">\( y' = -\dfrac{x}{y} \)</div>
+      <p>separation gives \( x^{2}+y^{2}=C \): half-circles, each defined only for \( |x|<\sqrt{C} \). Here \( D=\{y \neq 0\} \) but each solution lives on a bounded interval.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Example: blow-up inside \( D \)</h2>
+    <div class="split">
+      <div><p>For</p><div class="eq">\( y' = y^{2} \)</div>
+      <p>the conditions hold on all of \( \mathbb{R}^{2} \), yet the solutions</p>
+      <div class="eq">\( y = -\dfrac{1}{x+C} \)</div>
+      <p>escape to infinity at \( x=-C \). With \( y(3)=1 \): \( y=-1/(x-4) \), defined only on \( (-\infty, 4) \).</p></div>
+      <figure class="panel"><img src="media/dd_curve_family.gif" alt="Example: blow-up inside  D " loading="lazy"><figcaption>Solutions of \( y'=y^{2} \) blowing up at finite \( x \)</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

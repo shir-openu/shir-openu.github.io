@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Trapped Between Solutions — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Using uniqueness to bound a solution between two known solutions. Original animation.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/existence-uniqueness-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-wine">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Existence & Uniqueness</span>
+  </nav>
+
+  <h1>Trapped Between Solutions</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <div class="split">
+      <div><p>When an initial-value problem satisfies the existence-and-uniqueness conditions, exactly one solution passes through \( (x_{0}, y_{0}) \).</p>
+      <p>That solution can never cross the solutions \( y_{1}(x) \) and \( y_{2}(x) \), so it stays <strong>trapped between them</strong> and extends across the whole interval. In the region between \( y_{1} \) and \( y_{2} \) there are infinitely many solutions, all funnelling through the point \( (a, 0) \).</p></div>
+      <figure class="panel"><img src="media/exu_unique_existence.gif" alt="Trapped Between Solutions" loading="lazy"><figcaption>The unique solution through \( (x_{0},y_{0}) \), bounded between \( y_{1} \) and \( y_{2} \)</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>

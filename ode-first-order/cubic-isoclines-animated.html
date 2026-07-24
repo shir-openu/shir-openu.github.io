@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Cubic Isoclines —  f(x,y) = (1-xy)3  — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Isoclines of y' = (1-xy)^3: hyperbolas, from the rotating surface to solutions. Original animations.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/cubic-isoclines-animated.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<style>
+  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+</style>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-purple">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Isoclines & Direction Fields</span>
+  </nav>
+
+  <h1>Cubic Isoclines — \( f(x,y) = (1-xy)^{3} \)</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <h2>The surface</h2>
+    <div class="split">
+      <div><p>For</p><div class="eq">\( y' = (1-xy)^{3} \)</div>
+      <p>the slope surface \( z=(1-xy)^{3} \) is far less obvious than a plane or a paraboloid — the rotation reveals its saddle-like shape.</p></div>
+      <figure class="panel"><img src="media/cub_surface_rotation.gif" alt="The surface" loading="lazy"><figcaption>The rotating surface \( z=(1-xy)^{3} \)</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>The isoclines</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/cub_isoclines.gif" alt="The isoclines" loading="lazy"><figcaption>Hyperbola isoclines \( xy = 1-\sqrt[3]{C} \)</figcaption></figure>
+      <div><p>Setting \( (1-xy)^{3} = C \) gives \( xy = 1 - \sqrt[3]{C} \) — a family of hyperbolas (and the line pair \( xy=1 \) for \( C=0 \), the nullcline).</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Isoclines on the field</h2>
+    <div class="split">
+      <div><p>Overlaying the hyperbolas on the direction field shows each one carrying segments of a single slope.</p></div>
+      <figure class="panel"><img src="media/cub_isoclines_on_field.gif" alt="Isoclines on the field" loading="lazy"><figcaption>Isoclines over the direction field</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Solutions</h2>
+    <div class="split">
+      <figure class="panel"><img src="media/cub_solutions_on_field.gif" alt="Solutions" loading="lazy"><figcaption>Solutions threading the field of \( y'=(1-xy)^{3} \)</figcaption></figure>
+      <div><p>Solution curves follow the field, steep where \( |1-xy| \) is large and flat along the nullcline \( xy=1 \).</p></div>
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+</body>
+</html>
