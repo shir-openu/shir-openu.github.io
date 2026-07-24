@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
-<title>Singular Solutions — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="Singular points and singular solutions of a first-order ODE: where uniqueness fails, and the envelope of the general solution family. Lesson by Shir Sivroni.">
+<title>Singular Solutions — Definitions — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="General, particular and singular solutions of an ODE; envelope and non-envelope singular solutions, with a classification table and animated examples. Lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/singularity-definitions.html">
@@ -12,7 +12,7 @@
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
-<body class="theme-amber">
+<body class="theme-purple">
 <div class="container">
 
   <nav>
@@ -20,23 +20,92 @@
     <span class="page-tag">Singular Solutions</span>
   </nav>
 
-  <h1>Singular Solutions</h1>
-  <div class="accent-bar" style="background: linear-gradient(90deg, #b45309, #fbbf24);"></div>
+  <h1>Singular Solutions — Definitions</h1>
+  <div class="accent-bar"></div>
 
   <section class="card">
-    <p>A <strong>singular point</strong> of \( y'=f(x,y) \) is a point where the existence-and-uniqueness conditions fail. A <strong>singular solution</strong> is a solution passing entirely through such points — so through each of its points more than one solution runs.</p>
-    <div class="split">
-      <div>
-        <p>Typically a singular solution is the <em>envelope</em> of the general-solution family: it touches every member and is not itself one of them. Uniqueness fails all along it, because at each point it and one family curve share the same value and slope.</p>
-      </div>
-      <figure class="panel">
-        <canvas id="cv-sing" class="square"></canvas>
-        <figcaption>A family of solutions (teal) and their envelope (amber) — a singular solution</figcaption>
-      </figure>
+    <div class="note">
+      <div class="note-title">General solution</div>
+      A parametric family of solutions \( y = \varphi(x, C) \) depending on an arbitrary constant \( C \). Every choice of a specific value for \( C \) gives a <strong>particular solution</strong>.
     </div>
     <div class="note amber">
-      <div class="note-title">How to spot one</div>
-      Look for a curve tangent to the whole family. It solves the ODE, yet no value of the constant in the general solution produces it.
+      <div class="note-title">Singular solution</div>
+      A solution of the differential equation that is <strong>not</strong> obtained from the general solution \( y = \varphi(x, C) \) for any value of the constant \( C \).
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Types of singular solutions</h2>
+    <div class="note green">
+      <div class="note-title">Envelope</div>
+      An important special case of a singular solution — a curve that every solution from the general solution is tangent to at some point. The envelope is obtained by eliminating the parameter \( C \) from the system
+      <div class="eq">\( \begin{cases} F(x, y, C) = 0 \\[2pt] \dfrac{\partial F}{\partial C}(x, y, C) = 0 \end{cases} \)</div>
+    </div>
+    <div class="note purple">
+      <div class="note-title">Singular solution that is not an envelope</div>
+      A solution that is not obtained from the general solution, but is also not tangent to every general solution. A typical example: \( y \equiv 0 \) in Bernoulli equations \( y' + P(x)\,y = Q(x)\,y^n \), which is lost at the division step.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Classification table</h2>
+    <table class="classify">
+      <thead>
+        <tr><th>Solution type</th><th>Definition</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Particular solution</td>
+          <td>Obtained from the general solution by substituting a specific value of \( C \)</td>
+          <td>\( y = 2x + 8 \) from \( y = ax + 2a^2 \) with \( a = 2 \)</td>
+        </tr>
+        <tr>
+          <td>Singular solution — envelope</td>
+          <td>Not obtained for any \( C \), and every general solution is tangent to it</td>
+          <td>\( x^2 + 8y = 0 \) for the equation \( y - x y' - 2 (y')^2 = 0 \)</td>
+        </tr>
+        <tr>
+          <td>Singular solution — not an envelope</td>
+          <td>Not obtained for any \( C \), but not necessarily tangent to the general solutions</td>
+          <td>\( y \equiv 0 \) in the Bernoulli equation \( y' + P(x)\,y = Q(x)\,y^n \)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Example — an envelope</h2>
+    <div class="split">
+      <figure class="panel">
+        <canvas id="cv-envelope" class="square"></canvas>
+        <figcaption>The line family \( y = ax + 2a^2 \) and the parabola \( x^2 + 8y = 0 \): every line touches the parabola at one point</figcaption>
+      </figure>
+      <div>
+        <p>Consider the equation</p>
+        <div class="eq">\( y - x y' - 2 (y')^2 = 0. \)</div>
+        <p>Its general solution is the family of lines</p>
+        <div class="eq">\( y = ax + 2a^2. \)</div>
+        <p>The singular solution is the parabola</p>
+        <div class="eq">\( x^2 + 8y = 0, \)</div>
+        <p>which is an <strong>envelope</strong> — every line of the family is tangent to it at exactly one point.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Example — a singular solution that is not an envelope</h2>
+    <div class="split">
+      <div>
+        <p>Consider the equation</p>
+        <div class="eq">\( y' = y^{2/3}. \)</div>
+        <p>The general solution is</p>
+        <div class="eq">\( y = \frac{(x - C)^3}{27}. \)</div>
+        <p>The solution \( y \equiv 0 \) is a singular solution: it is not obtained for any value of \( C \), yet it is <strong>not</strong> an envelope of the family.</p>
+      </div>
+      <figure class="panel">
+        <canvas id="cv-cubics" class="square"></canvas>
+        <figcaption>The cubics \( y = (x-C)^3/27 \) and the singular solution \( y \equiv 0 \), which is not an envelope</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -47,28 +116,58 @@
 <script>
 addEventListener('DOMContentLoaded', () => {
   const { Plot, Timeline, COLORS } = ODE;
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
-  const plot = new Plot(document.getElementById('cv-sing'), { xmin: -4.2, xmax: 4.2, ymin: -3.2, ymax: 1.2, ytick: 1 });
-  // family of tangent lines to the parabola y = -x^2/8:  y = t^2/8 - (t/4)x
-  const line = t => x => t * t / 8 - (t / 4) * x;
-  const params = [];
-  for (let t = -8; t <= 8; t += 1) params.push(t);
-  const parab = x => -x * x / 8;
 
-  const phases = [
-    { d: 2200, draw(p) {
-        const m = Math.floor(params.length * p);
-        for (let i = 0; i < m; i++) {
-          const t = params[i];
-          plot.path([[-4.2, line(t)(-4.2)], [4.2, line(t)(4.2)]], { color: P.sky, width: 1.1 });
+  /* --- Panel 1: lines y = ax + 2a^2 sweeping, parabola x^2 + 8y = 0 --- */
+  {
+    const plot = new Plot(document.getElementById('cv-envelope'), { xmin: -10, xmax: 10, ymin: -13, ymax: 3, xtick: 2, ytick: 2 });
+    const N = 25;
+    const strings = 'rgba(45,212,212,0.55)';
+    const phases = [
+      {
+        d: 3400,
+        draw(p) {
+          const k = Math.floor(p * N);
+          for (let i = 0; i < k; i++) {
+            const a = -2.4 + (i / (N - 1)) * 4.8;
+            plot.param(t => [t, a * t + 2 * a * a], plot.xmin, plot.xmax, { n: 2, color: strings, width: 1 });
+          }
         }
-      } },
-    { d: 1500, draw(p) {
-        params.forEach(t => plot.path([[-4.2, line(t)(-4.2)], [4.2, line(t)(4.2)]], { color: P.sky, width: 1.1 }));
-        plot.param(t => [t, parab(t)], -4.2, 4.2, { color: P.orange, width: 2.8, progress: p });
-      } }
-  ];
-  new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+      },
+      {
+        d: 2200,
+        draw(p) {
+          plot.param(t => [t, -t * t / 8], -10, 10, { color: COLORS.amber, width: 3, progress: p, head: true });
+          if (p > 0.55) plot.label('x² + 8y = 0', 0.4, -6.2, COLORS.amber, 'left');
+        }
+      }
+    ];
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
+
+  /* --- Panel 2: cubics (x-C)^3/27 and y = 0 --- */
+  {
+    const plot = new Plot(document.getElementById('cv-cubics'), { xmin: -5, xmax: 5, ymin: -2.5, ymax: 2.5, xtick: 1, ytick: 1 });
+    const Cs = [-3, -1.5, 0, 1.5, 3];
+    const phases = [
+      {
+        d: 2400,
+        draw(p) {
+          Cs.forEach((C, i) => {
+            const q = Math.min(1, Math.max(0, p * Cs.length - i));
+            plot.param(t => [t, Math.pow(t - C, 3) / 27], plot.xmin, plot.xmax, { color: COLORS.teal, width: 1.8, progress: q });
+          });
+        }
+      },
+      {
+        d: 1600,
+        draw(p) {
+          plot.param(t => [t, 0], plot.xmin, plot.xmax, { color: COLORS.amber, width: 3, progress: p, head: true });
+          if (p > 0.55) plot.label('y ≡ 0  (singular, not an envelope)', -4.6, 0.35, COLORS.amber, 'left');
+        }
+      }
+    ];
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
 });
 </script>
 </body>

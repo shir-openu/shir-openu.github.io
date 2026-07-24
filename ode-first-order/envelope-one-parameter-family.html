@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
-<title>Envelope of a Family — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="The envelope of a one-parameter family of curves: a curve tangent to every member, found from phi = 0 and d phi / dc = 0. Animated string-art / astroid example. Lesson by Shir Sivroni.">
+<title>Envelope of a One-Parameter Family — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="The envelope of a one-parameter family of curves: definition, string-art animations, and two worked examples ending in the astroid. Lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/envelope-one-parameter-family.html">
@@ -17,33 +17,74 @@
 
   <nav>
     <a href="./" class="back-link">Back to First-Order ODE</a>
-    <span class="page-tag">Geometric Aspects</span>
+    <span class="page-tag">Envelopes &amp; Orthogonal Families</span>
   </nav>
 
-  <h1>Envelope of a Family</h1>
+  <h1>Envelope of a One-Parameter Family of Curves</h1>
   <div class="accent-bar"></div>
 
   <section class="card">
-    <p>Given a one-parameter family \( \varphi(x,y,c)=0 \), an <strong>envelope</strong> is a curve tangent to every member of the family. At each of its points it shares the slope of one family curve, so if the family is the general solution of a first-order ODE, the envelope solves that same ODE too.</p>
-    <div class="eq">\( \varphi(x,y,c)=0, \qquad \dfrac{\partial \varphi}{\partial c}(x,y,c)=0. \)</div>
-    <p>Eliminating \( c \) between these two equations gives the envelope.</p>
+    <p>Given a one-parameter family of curves in the plane, written implicitly as</p>
+    <div class="eq">\( \varphi(x, y, c) = 0, \)</div>
+    <p>a curve \( \gamma \) is called an <strong>envelope</strong> of the family if through every point of \( \gamma \) there passes a curve of the family that is tangent to \( \gamma \) at that point.</p>
+    <p>By this definition, the family member and the envelope share the same slope \( y' \) at the common point \( (x,y) \). Therefore, when the family of curves represents the general solution of a first-order ODE, <strong>the envelope satisfies the same ODE</strong>.</p>
+    <div class="note">
+      <div class="note-title">A visual cue</div>
+      Visually, the graph of an envelope resembles works of <em>String Art</em>: many straight threads, none of which is the curve — yet the curve emerges as the shape they all touch.
+    </div>
   </section>
 
   <section class="card">
-    <h2>Example: sliding segments</h2>
+    <h2>Example 1</h2>
+    <p>We find the envelope of the family of lines</p>
+    <div class="eq">\( \frac{x}{c} + \frac{y}{1-c} = 1, \qquad 0 &lt; c &lt; 1. \)</div>
     <div class="split">
       <div>
-        <p>The unit segments</p>
-        <div class="eq">\( \dfrac{x}{\cos\alpha} + \dfrac{y}{\sin\alpha} = 1 \)</div>
-        <p>run between the axes as \( \alpha \) varies. Eliminating \( \alpha \) gives the envelope</p>
-        <div class="eq">\( x^{2/3} + y^{2/3} = 1, \)</div>
-        <p>an <em>astroid</em> — the curve the segments trace out, familiar as string art.</p>
+        <p>Differentiate the equation with respect to \( c \):</p>
+        <div class="eq">\( \frac{\partial}{\partial c}\!\left( \frac{x}{c} + \frac{y}{1-c} \right) = -\frac{x}{c^2} + \frac{y}{(1-c)^2} = 0. \)</div>
+        <p>Isolating \( y \):</p>
+        <div class="eq">\( y (1-c)^2 = x c^2 \;\Rightarrow\; y = x\, \frac{(1-c)^2}{c^2}. \)</div>
+        <p>Substituting this \( y \) back into the original equation:</p>
+        <div class="eq">\( \frac{x}{c} + \frac{x (1-c)}{c^2} = 1 \;\Rightarrow\; \frac{x}{c^2} = 1 \;\Rightarrow\; x = c^2, \)</div>
+        <p>and then</p>
+        <div class="eq">\( y = x\, \frac{(1-c)^2}{c^2} = (1-c)^2. \)</div>
+        <p>We obtained the envelope as a parametric curve: \( x = c^2 \), \( y = (1-c)^2 \), i.e. \( \sqrt{x} = c \), \( \sqrt{y} = 1 - c \). That is:</p>
+        <div class="eq">\( \sqrt{x} + \sqrt{y} = 1. \)</div>
       </div>
       <figure class="panel">
-        <canvas id="cv-env" class="square"></canvas>
-        <figcaption>The segment family and its envelope \( x^{2/3}+y^{2/3}=1 \)</figcaption>
+        <canvas id="cv-strings" class="square"></canvas>
+        <figcaption>String art: the lines \( \frac{x}{c} + \frac{y}{1-c} = 1 \) sweep over \( 0 &lt; c &lt; 1 \), and the envelope \( \sqrt{x}+\sqrt{y}=1 \) emerges</figcaption>
       </figure>
     </div>
+  </section>
+
+  <section class="card">
+    <h2>Example 2 — The Astroid</h2>
+    <p>We find the envelope of the family of lines</p>
+    <div class="eq">\( \frac{x}{\cos\alpha} + \frac{y}{\sin\alpha} = 1. \)</div>
+    <div class="split">
+      <figure class="panel">
+        <canvas id="cv-astroid" class="square"></canvas>
+        <figcaption>Segments of constant length sliding between the axes: their envelope is the astroid \( x^{2/3}+y^{2/3}=1 \)</figcaption>
+      </figure>
+      <div>
+        <p>Denote \( \varphi(x, y, \alpha) = \dfrac{x}{\cos\alpha} + \dfrac{y}{\sin\alpha} - 1 = 0 \) and differentiate with respect to the parameter \( \alpha \):</p>
+        <div class="eq">\( \frac{\partial \varphi}{\partial \alpha} = \frac{x \sin\alpha}{\cos^2\alpha} - \frac{y \cos\alpha}{\sin^2\alpha} = 0. \)</div>
+        <p>We solve the system of the two equations. From the second equation:</p>
+        <div class="eq">\( x \sin^3\alpha = y \cos^3\alpha. \)</div>
+        <p>Set \( x = \cos^3\alpha \), \( y = \sin^3\alpha \) and substitute into the first equation:</p>
+        <div class="eq">\( \frac{\cos^3\alpha}{\cos\alpha} + \frac{\sin^3\alpha}{\sin\alpha} = \cos^2\alpha + \sin^2\alpha = 1, \)</div>
+        <p>which holds for every \( \alpha \). The envelope</p>
+        <div class="eq">\( x = \cos^3\alpha, \qquad y = \sin^3\alpha \)</div>
+        <p>is a parametrisation of a curve called the <strong>astroid</strong>. Its Cartesian equation is</p>
+        <div class="eq">\( x^{2/3} + y^{2/3} = 1. \)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>The definition, point by point</h2>
+    <p>Given a one-parameter family of curves in the plane, written implicitly as \( \varphi(x,y,c) = 0 \), a curve \( \gamma \) is an envelope of the family if at every point of \( \gamma \) there is a curve of the family passing through that point and tangent to \( \gamma \) there. That is: for every point \( P \) on the envelope there exists a value of the parameter \( c \) such that the corresponding family curve \( \varphi(x,y,c) = 0 \) passes through \( P \), and at that point it has the same tangent as the envelope.</p>
   </section>
 
   <div class="footer">&copy; Developed by Shir Sivroni</div>
@@ -53,33 +94,64 @@
 <script>
 addEventListener('DOMContentLoaded', () => {
   const { Plot, Timeline, COLORS } = ODE;
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
-  const plot = new Plot(document.getElementById('cv-env'), { xmin: -1.15, xmax: 1.15, ymin: -1.15, ymax: 1.15 });
 
-  // full astroid tangent segments across all four quadrants
-  const N = 40;
-  const segs = [];
-  for (let k = 0; k < N; k++) {
-    const a = (k + 0.5) / N * 2 * Math.PI;
-    // segment tangent to the astroid at parameter a: axis intercepts (cos a,0),(0,sin a)
-    segs.push([[Math.cos(a), 0], [0, Math.sin(a)]]);
-  }
-  const astroid = t => [Math.cos(t) ** 3, Math.sin(t) ** 3];
+  const seg = (plot, x1, y1, x2, y2, color, width) =>
+    plot.param(t => [x1 + (x2 - x1) * t, y1 + (y2 - y1) * t], 0, 1, { n: 2, color, width: width || 1 });
 
-  const phases = [
-    { d: 2400, draw(p) {
-        const m = Math.floor(segs.length * p);
-        for (let i = 0; i < m; i++) {
-          const s = segs[i];
-          plot.path([s[0], s[1]], { color: P.sky, width: 1.1 });
+  /* --- Example 1: strings (c,0)-(0,1-c), envelope sqrt(x)+sqrt(y)=1 --- */
+  {
+    const plot = new Plot(document.getElementById('cv-strings'), { xmin: -0.12, xmax: 1.15, ymin: -0.12, ymax: 1.15, xtick: 0.5, ytick: 0.5 });
+    const N = 34;
+    const strings = 'rgba(45,212,212,0.55)';
+    const phases = [
+      {
+        d: 3400,
+        draw(p) {
+          const k = Math.floor(p * N);
+          for (let i = 1; i <= k; i++) {
+            const c = i / (N + 1);
+            seg(plot, c, 0, 0, 1 - c, strings, 1);
+          }
         }
-      } },
-    { d: 1500, draw(p) {
-        segs.forEach(s => plot.path([s[0], s[1]], { color: P.sky, width: 1.1 }));
-        plot.param(astroid, 0, 2 * Math.PI, { color: P.orange, width: 2.6, progress: p });
-      } }
-  ];
-  new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+      },
+      {
+        d: 2200,
+        draw(p) {
+          plot.param(t => [t * t, (1 - t) * (1 - t)], 0, 1, { color: COLORS.amber, width: 3, progress: p, head: true });
+          if (p > 0.55) plot.label('√x + √y = 1', 0.55, 0.55, COLORS.amber, 'left');
+        }
+      }
+    ];
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
+
+  /* --- Example 2: strings (cos a,0)-(0,sin a) over all quadrants, astroid --- */
+  {
+    const plot = new Plot(document.getElementById('cv-astroid'), { xmin: -1.45, xmax: 1.45, ymin: -1.45, ymax: 1.45, xtick: 0.5, ytick: 0.5 });
+    const N = 72;
+    const strings = 'rgba(255,90,122,0.5)';
+    const phases = [
+      {
+        d: 4200,
+        draw(p) {
+          const k = Math.floor(p * N);
+          for (let i = 1; i <= k; i++) {
+            const a = (i / (N + 1)) * 2 * Math.PI;
+            if (Math.abs(Math.cos(a)) < 0.03 || Math.abs(Math.sin(a)) < 0.03) continue;
+            seg(plot, Math.cos(a), 0, 0, Math.sin(a), strings, 1);
+          }
+        }
+      },
+      {
+        d: 2600,
+        draw(p) {
+          plot.param(t => [Math.pow(Math.cos(t), 3), Math.pow(Math.sin(t), 3)], 0, 2 * Math.PI, { color: COLORS.amber, width: 3, progress: p, head: true });
+          if (p > 0.55) plot.label('x^(2/3) + y^(2/3) = 1', 0.62, 1.18, COLORS.amber, 'left');
+        }
+      }
+    ];
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
 });
 </script>
 </body>

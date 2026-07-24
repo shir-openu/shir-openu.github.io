@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
-<title>Existence Domain vs Solution Domain — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="The region D where existence and uniqueness hold need not equal the domain D' of the actual solution: solutions can extend past D or break down inside it. Lesson by Shir Sivroni.">
+<title>Existence-Uniqueness Domain vs. Solution Domain — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="How the domain where the existence and uniqueness theorem holds differs from the domain of the actual solutions: three animated examples. Lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/ivp-existence-vs-solution-domain.html">
@@ -12,52 +12,96 @@
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
-<body class="theme-teal">
+<body class="theme-pink">
 <div class="container">
 
   <nav>
     <a href="./" class="back-link">Back to First-Order ODE</a>
-    <span class="page-tag">Existence &amp; Uniqueness</span>
+    <span class="page-tag">Initial Value Problems</span>
   </nav>
 
-  <h1>Existence Domain vs Solution Domain</h1>
+  <h1>Existence-Uniqueness Domain vs. Solution Domain</h1>
   <div class="accent-bar"></div>
 
   <section class="card">
-    <p>Let \( D \) be the region where the existence-and-uniqueness conditions hold, and \( D' \) the domain on which an actual solution lives. These two need not coincide.</p>
+    <p>For an initial value problem \( y' = f(x,y) \), two different domains play a role: the region \( D \) where the hypotheses of the existence and uniqueness theorem hold, and the region \( D' \) where the solutions themselves are defined. Neither one has to contain the other — the three examples below show \( D \subsetneq D' \), then \( D' \subsetneq D \), and finally a solution whose domain is bounded even though \( D \) is the whole plane.</p>
   </section>
 
   <section class="card">
-    <h2>Solutions can extend past \( D \)</h2>
+    <h2>Example of \( D \subsetneq D' \)</h2>
     <div class="split">
       <div>
-        <p>For</p>
-        <div class="eq">\( y' - \dfrac{y}{x} = x \)</div>
-        <p>the right-hand side is undefined on \( x=0 \), so \( D=\{x\neq 0\} \). Yet the solutions</p>
-        <div class="eq">\( y = x^{2} + C x \)</div>
-        <p>are smooth on all of \( \mathbb{R} \) and pass through the origin: here \( D \subset D' \).</p>
+        <p>Consider the equation</p>
+        <div class="eq">\( y' - \frac{1}{x}\, y = x. \)</div>
+        <p>We find an integrating factor:</p>
+        <div class="eq">\( \mu(x) = e^{\int -\frac{1}{x}\,dx} = e^{-\ln x} = \frac{1}{x}. \)</div>
+        <p>Multiplying by \( \mu(x) \):</p>
+        <div class="eq">\( \frac{1}{x}\, y' - \frac{1}{x^2}\, y = 1. \)</div>
+        <p>The left-hand side is a derivative:</p>
+        <div class="eq">\( \frac{d}{dx}\!\left( \frac{y}{x} \right) = 1. \)</div>
+        <p>Integrating gives \( \dfrac{y}{x} = x + C \), so the general solution is</p>
+        <div class="eq">\( y(x) = x^2 + Cx. \)</div>
       </div>
       <figure class="panel">
-        <canvas id="cv-parab" class="square"></canvas>
-        <figcaption>\( y=x^2+Cx \): defined on \( \mathbb{R} \), though \( x=0 \) is excluded from \( D \) (dashed)</figcaption>
+        <canvas id="cv-family" class="square"></canvas>
+        <figcaption>The solution family \( y = x^2 + Cx \): every solution is defined on all of \( \mathbb{R} \), although the equation excludes the line \( x = 0 \)</figcaption>
       </figure>
+    </div>
+    <div class="note pink">
+      <div class="note-title">Compare the two domains</div>
+      The domain where the conditions of the existence and uniqueness theorem hold is
+      \( D = \{ (x,y) \in \mathbb{R}^2 \mid x \neq 0 \} \),
+      while the domain of definition of the solutions is \( D' = \mathbb{R}^2 \). Here \( D \) is strictly contained in \( D' \).
     </div>
   </section>
 
   <section class="card">
-    <h2>Solutions can break down inside \( D \)</h2>
+    <h2>Example of \( D' \subsetneq D \)</h2>
     <div class="split">
       <figure class="panel">
-        <canvas id="cv-blow" class="square"></canvas>
-        <figcaption>\( y=-1/(x-1) \) escapes to infinity at \( x=1 \) (dashed)</figcaption>
+        <canvas id="cv-circles" class="square"></canvas>
+        <figcaption>Solutions of \( y' = -x/y \) are half-circles: each solution lives entirely in \( y &gt; 0 \) or entirely in \( y &lt; 0 \)</figcaption>
       </figure>
       <div>
-        <p>For</p>
-        <div class="eq">\( y' = y^{2} \)</div>
-        <p>both \( f \) and \( f_y \) are continuous everywhere, so \( D=\mathbb{R}^2 \). But the solution through \( (0,1) \),</p>
-        <div class="eq">\( y = -\dfrac{1}{x-1}, \)</div>
-        <p>blows up at \( x=1 \): its domain is only \( (-\infty, 1) \), so \( D' \subset D \).</p>
+        <p>Consider the equation</p>
+        <div class="eq">\( y' = -\frac{x}{y}. \)</div>
+        <p>Multiplying by \( y \) gives \( y\, y' = -x \). The left-hand side is a derivative:</p>
+        <div class="eq">\( \frac{1}{2} \frac{d}{dx}\!\left( y^2 \right) = -x. \)</div>
+        <p>Integrating: \( \frac{1}{2} y^2 = -\frac{1}{2} x^2 + C \). Multiplying by \( 2 \) and rearranging:</p>
+        <div class="eq">\( x^2 + y^2 = C. \)</div>
+        <p>The solutions are <strong>half-circles</strong>, since a solution must be a differentiable function of \( x \).</p>
       </div>
+    </div>
+    <div class="note">
+      <div class="note-title">Compare the two domains</div>
+      The existence and uniqueness conditions hold on
+      \( D = \{ (x,y) \in \mathbb{R}^2 \mid y \neq 0 \} \),
+      but each individual solution is defined only inside
+      \( \{ y &gt; 0 \} \) or \( \{ y &lt; 0 \} \). Here the solutions occupy strictly less than \( D \).
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Asymptotic solutions: \( D = \mathbb{R}^2 \), yet the solution domain is bounded</h2>
+    <div class="split">
+      <div>
+        <p>Consider the equation</p>
+        <div class="eq">\( y' = y^2. \)</div>
+        <p>For \( y \neq 0 \) we separate variables:</p>
+        <div class="eq">\( \frac{1}{y^2}\, \frac{dy}{dx} = 1 \;\Rightarrow\; \int \frac{dy}{y^2} = \int dx, \)</div>
+        <p>so \( -\dfrac{1}{y} = x + C \), and hence</p>
+        <div class="eq">\( y(x) = -\frac{1}{x + C}. \)</div>
+        <p>For the initial condition \( y(3) = 1 \) we get \( C = -4 \), so</p>
+        <div class="eq">\( y(x) = -\frac{1}{x - 4}, \qquad x \in (-\infty,\, 4). \)</div>
+      </div>
+      <figure class="panel">
+        <canvas id="cv-asymptote" class="square"></canvas>
+        <figcaption>The solution of \( y' = y^2 \), \( y(3)=1 \) blows up along the asymptote \( x = 4 \): its domain is \( (-\infty, 4) \)</figcaption>
+      </figure>
+    </div>
+    <div class="note amber">
+      <div class="note-title">The theorem is local</div>
+      The existence and uniqueness conditions hold on all of \( D = \mathbb{R}^2 \), yet the domain of the solution is bounded. For example, for the initial condition \( y(2) = 1 \) the solution is trapped inside the infinite rectangle \( (-\infty, 3) \times (0, \infty) \): bounded on one side along the \( x \)-axis and on one side along the \( y \)-axis.
     </div>
   </section>
 
@@ -68,43 +112,81 @@
 <script>
 addEventListener('DOMContentLoaded', () => {
   const { Plot, Timeline, COLORS } = ODE;
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
 
-  /* Panel 1: parabola family y = x^2 + Cx */
+  /* --- Panel 1: parabola family y = x^2 + Cx, all defined on R --- */
   {
-    const plot = new Plot(document.getElementById('cv-parab'), { xmin: -3.2, xmax: 3.2, ymin: -3.2, ymax: 3.2 });
-    const Cs = [-3, -1.5, 0, 1.5, 3];
-    const cols = [P.sky, P.pink, P.orange, P.lilac, P.green];
-    const phases = [
-      { d: 800, draw() { /* dashed excluded line x=0 drawn in bg via axis; add marker */ plot.param(t => [0, t], -3.2, 3.2, { color: P.magenta, width: 1.4, dash: [5, 5] }); } }
+    const plot = new Plot(document.getElementById('cv-family'), { xmin: -4, xmax: 4, ymin: -6, ymax: 8, xtick: 1, ytick: 2 });
+    const items = [
+      { C: -3,  color: COLORS.teal },
+      { C: -1.5, color: COLORS.purple },
+      { C: 0,   color: COLORS.amber },
+      { C: 1.5, color: COLORS.green },
+      { C: 3,   color: COLORS.pink }
     ];
-    Cs.forEach((C, i) => phases.push({
-      d: 700,
+    const curve = C => t => [t, t * t + C * t];
+    const phases = items.map((it, i) => ({
+      d: 900,
       draw(p) {
-        plot.param(t => [0, t], -3.2, 3.2, { color: P.magenta, width: 1.4, dash: [5, 5] });
-        for (let k = 0; k < i; k++) plot.param(x => [x, x * x + Cs[k] * x], -3.2, 3.2, { color: cols[k], width: 2 });
-        plot.param(x => [x, x * x + C * x], -3.2, 3.2, { color: cols[i], width: 2.4, progress: p });
+        plot.param(curve(it.C), plot.xmin, plot.xmax, { color: it.color, width: 2, progress: p });
+        if (p > 0.6) plot.label('C=' + it.C, 2.4, 2.4 * 2.4 + it.C * 2.4 + 0.5, it.color);
       }
     }));
+    phases.push({
+      d: 1200,
+      draw(p) {
+        plot.param(t => [0, t], plot.ymin, plot.ymax, { color: COLORS.wine, width: 2, dash: [7, 6], progress: p });
+        if (p > 0.6) plot.label('x=0 excluded from D', 0.15, -4.6, COLORS.wine, 'left');
+      }
+    });
     new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
   }
 
-  /* Panel 2: blow-up y = -1/(x-1) */
+  /* --- Panel 2: half-circle solutions of y' = -x/y --- */
   {
-    const plot = new Plot(document.getElementById('cv-blow'), { xmin: -3.2, xmax: 3.2, ymin: -3.2, ymax: 3.2 });
+    const plot = new Plot(document.getElementById('cv-circles'), { xmin: -2.6, xmax: 2.6, ymin: -2.6, ymax: 2.6 });
+    const radii = [1, Math.sqrt(2), Math.sqrt(3), 2];
+    const upper = r => t => [r * Math.cos(t), r * Math.sin(t)];
+    const phases = [];
+    radii.forEach(r => phases.push({
+      d: 900,
+      draw(p) { plot.param(upper(r), 0.06, Math.PI - 0.06, { color: COLORS.teal, width: 2, progress: p }); }
+    }));
+    radii.forEach(r => phases.push({
+      d: 900,
+      draw(p) { plot.param(upper(r), Math.PI + 0.06, 2 * Math.PI - 0.06, { color: COLORS.pink, width: 2, progress: p }); }
+    }));
+    phases.push({
+      d: 1200,
+      draw(p) {
+        plot.param(t => [t, 0], plot.xmin, plot.xmax, { color: COLORS.amber, width: 2, dash: [7, 6], progress: p });
+        if (p > 0.6) plot.label('y=0 excluded from D', 0.12, 0.25, COLORS.amber, 'left');
+      }
+    });
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
+
+  /* --- Panel 3: y' = y^2, y(3)=1, blow-up at x=4 --- */
+  {
+    const plot = new Plot(document.getElementById('cv-asymptote'), { xmin: -2, xmax: 8, ymin: -1, ymax: 6, xtick: 1, ytick: 1 });
+    const sol = t => [t, 1 / (4 - t)];
     const phases = [
-      { d: 700, draw() { plot.param(t => [1, t], -3.2, 3.2, { color: P.magenta, width: 1.4, dash: [5, 5] }); } },
-      { d: 2000, draw(p) {
-          plot.param(t => [1, t], -3.2, 3.2, { color: P.magenta, width: 1.4, dash: [5, 5] });
-          // left branch (the actual solution through (0,1)), traced up to the asymptote
-          plot.param(x => [x, -1 / (x - 1)], -3.1, 0.985, { color: P.pink, width: 2.6, progress: p, head: true });
-        } },
-      { d: 900, draw() {
-          plot.param(t => [1, t], -3.2, 3.2, { color: P.magenta, width: 1.4, dash: [5, 5] });
-          plot.param(x => [x, -1 / (x - 1)], -3.1, 0.985, { color: P.pink, width: 2.6 });
-          plot.dot(0, 1, P.orange, 4.5);
-          plot.label('(0,1)', 0.15, 1.25, P.orange);
-        } }
+      {
+        d: 1300,
+        draw(p) {
+          plot.param(t => [4, t], plot.ymin, plot.ymax, { color: COLORS.pink, width: 2, dash: [7, 6], progress: p });
+          if (p > 0.6) plot.label('x=4', 4.15, 5.4, COLORS.pink, 'left');
+        }
+      },
+      {
+        d: 2400,
+        draw(p) {
+          plot.param(t => [4, t], plot.ymin, plot.ymax, { color: COLORS.pink, width: 2, dash: [7, 6] });
+          plot.label('x=4', 4.15, 5.4, COLORS.pink, 'left');
+          plot.param(sol, -2, 3.835, { color: COLORS.teal, width: 2.6, progress: p, head: true });
+          plot.dot(3, 1, COLORS.amber, 4.5);
+          if (p > 0.25) plot.label('y(3)=1', 2.6, 0.45, COLORS.amber);
+        }
+      }
     ];
     new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
   }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Singular Solution — Worked Example — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="Worked example of a singular solution: a family of straight lines and the parabola envelope they trace, found from phi = 0 and d phi / dc = 0. Lesson by Shir Sivroni.">
+<meta name="description" content="A full derivation of the singular solution of y - xy' - 2(y')^2 = 0: the line family y = ax + 2a^2 and its envelope, the parabola x^2 + 8y = 0. Lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/singularity-example.html">
@@ -12,7 +12,7 @@
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
-<body class="theme-wine">
+<body class="theme-purple">
 <div class="container">
 
   <nav>
@@ -24,21 +24,39 @@
   <div class="accent-bar"></div>
 
   <section class="card">
+    <p>A <strong>singular solution</strong> of a differential equation is a solution that is not obtained by substituting a constant value into the parameter of the general solution.</p>
+  </section>
+
+  <section class="card">
+    <h2>Example</h2>
     <div class="split">
-      <figure class="panel">
-        <canvas id="cv-ex" class="square"></canvas>
-        <figcaption>The line family and its envelope \( y=-x^{2}/8 \), the singular solution</figcaption>
-      </figure>
       <div>
-        <p>Consider the family of straight lines</p>
-        <div class="eq">\( \varphi = y - \dfrac{t^{2}}{8} + \dfrac{t}{4}\,x = 0. \)</div>
-        <p>Differentiate with respect to the parameter \( t \):</p>
-        <div class="eq">\( \dfrac{\partial \varphi}{\partial t} = -\dfrac{t}{4} + \dfrac{x}{4} = 0 \;\Rightarrow\; t = x. \)</div>
-        <p>Substituting \( t=x \) back gives the envelope</p>
-        <div class="eq">\( y = -\dfrac{x^{2}}{8}. \)</div>
-        <p>This parabola solves the ODE and is tangent to every line, yet it is not one of them — a singular solution.</p>
+        <p>Given the differential equation</p>
+        <div class="eq">\( y - x y' - 2 (y')^2 = 0, \)</div>
+        <p>we compute a general solution. Denote \( p = y' \) and rearrange:</p>
+        <div class="eq">\( y = xp + 2p^2. \)</div>
+        <p>Differentiating with respect to \( x \) gives</p>
+        <div class="eq">\( (x + 4p)\, \frac{dp}{dx} = 0. \)</div>
+        <p>If \( \dfrac{dp}{dx} = 0 \), then \( p = a \) is constant, and we obtain the <strong>general solution</strong>:</p>
+        <div class="eq">\( y = ax + 2a^2. \)</div>
+        <p>If \( x + 4p = 0 \), then \( p = -\dfrac{x}{4} \). Substituting into \( y = xp + 2p^2 \):</p>
+        <div class="eq">\( y = x\!\left( -\frac{x}{4} \right) + 2\!\left( -\frac{x}{4} \right)^{\!2} = -\frac{x^2}{4} + \frac{x^2}{8} = -\frac{x^2}{8}, \)</div>
+        <p>and we obtain the <strong>singular solution</strong>:</p>
+        <div class="eq">\( x^2 + 8y = 0. \)</div>
       </div>
+      <figure class="panel">
+        <canvas id="cv-envelope" class="square"></canvas>
+        <figcaption>The line family \( y = ax + 2a^2 \) sweeps over \( a \), and the singular solution — the parabola \( x^2+8y=0 \) — emerges as its envelope</figcaption>
+      </figure>
     </div>
+    <div class="note amber">
+      <div class="note-title">Summary</div>
+      The general solution is the family of lines \( y = ax + 2a^2 \), and the singular solution is the parabola \( x^2 + 8y = 0 \), which is an <strong>envelope</strong> of the general solution: every line of the family is tangent to it at some point.
+    </div>
+  </section>
+
+  <section class="card">
+    <p>In other words: a singular solution of a differential equation is a solution that is not obtained by substituting a constant value into the parameter of the general solution, yet every general solution is tangent to it at some point. That is, the singular solution is the <strong>envelope</strong> of the graphs of the general solution.</p>
   </section>
 
   <div class="footer">&copy; Developed by Shir Sivroni</div>
@@ -48,28 +66,30 @@
 <script>
 addEventListener('DOMContentLoaded', () => {
   const { Plot, Timeline, COLORS } = ODE;
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
-  const plot = new Plot(document.getElementById('cv-ex'), { xmin: -4.2, xmax: 4.2, ymin: -3.2, ymax: 1.2, ytick: 1 });
-  const line = t => x => t * t / 8 - (t / 4) * x;
-  const params = [];
-  for (let t = -8; t <= 8; t += 1) params.push(t);
+
+  const plot = new Plot(document.getElementById('cv-envelope'), { xmin: -10, xmax: 10, ymin: -13, ymax: 3, xtick: 2, ytick: 2 });
+  const N = 25;
+  const strings = 'rgba(167,139,250,0.55)';
   const phases = [
-    { d: 2000, draw(p) {
-        const m = Math.floor(params.length * p);
-        for (let i = 0; i < m; i++) {
-          const t = params[i];
-          plot.path([[-4.2, line(t)(-4.2)], [4.2, line(t)(4.2)]], { color: P.sky, width: 1.2 });
+    {
+      d: 3400,
+      draw(p) {
+        const k = Math.floor(p * N);
+        for (let i = 0; i < k; i++) {
+          const a = -2.4 + (i / (N - 1)) * 4.8;
+          plot.param(t => [t, a * t + 2 * a * a], plot.xmin, plot.xmax, { n: 2, color: strings, width: 1 });
         }
-      } },
-    { d: 900, draw(p) {
-        params.forEach(t => plot.path([[-4.2, line(t)(-4.2)], [4.2, line(t)(4.2)]], { color: P.sky, width: 1.2 }));
-        plot.param(x => [x, -x * x / 8], -4.2, 4.2, { color: P.magenta, width: 3, progress: p });
-      } },
-    { d: 700, draw(p) {
-        params.forEach(t => plot.path([[-4.2, line(t)(-4.2)], [4.2, line(t)(4.2)]], { color: P.sky, width: 1.2 }));
-        plot.param(x => [x, -x * x / 8], -4.2, 4.2, { color: P.magenta, width: 3 });
-        if (p > 0.2) { const xt = 2; plot.dot(xt, -xt * xt / 8, P.orange, 4.5); }
-      } }
+        if (p > 0.15) plot.label('y = ax + 2a²', -9.4, 2.2, COLORS.purple, 'left');
+      }
+    },
+    {
+      d: 2200,
+      draw(p) {
+        plot.label('y = ax + 2a²', -9.4, 2.2, COLORS.purple, 'left');
+        plot.param(t => [t, -t * t / 8], -10, 10, { color: COLORS.amber, width: 3, progress: p, head: true });
+        if (p > 0.55) plot.label('x² + 8y = 0', 0.4, -6.2, COLORS.amber, 'left');
+      }
+    }
   ];
   new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
 });

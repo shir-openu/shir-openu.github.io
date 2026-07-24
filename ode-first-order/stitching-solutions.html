@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Stitching Solutions — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="When uniqueness fails, solutions of a first-order ODE can be joined at a point where value and slope agree. Worked with y' = 2 e^x sqrt|y|. Lesson by Shir Sivroni.">
+<meta name="description" content="When existence and uniqueness fail, solutions of an ODE can be stitched together at a point where values and derivatives agree. Animated lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/stitching-solutions.html">
@@ -12,37 +12,56 @@
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
-<body class="theme-purple">
+<body class="theme-pink">
 <div class="container">
 
   <nav>
     <a href="./" class="back-link">Back to First-Order ODE</a>
-    <span class="page-tag">Existence &amp; Uniqueness</span>
+    <span class="page-tag">Initial Value Problems</span>
   </nav>
 
-  <h1>Stitching Solutions</h1>
+  <h1>&ldquo;Stitching&rdquo; Solutions of an ODE</h1>
   <div class="accent-bar"></div>
 
   <section class="card">
-    <p>Where the uniqueness conditions fail, several solutions may share a point. Two of them can then be <strong>stitched</strong> at a junction \( x_0 \) as long as value and slope match:</p>
-    <div class="eq">\( y_1(x_0)=y_2(x_0), \qquad y_1'(x_0)=y_2'(x_0). \)</div>
-    <p>The join is then continuous and differentiable, so the stitched curve is itself a solution.</p>
+    <p>When the conditions of the existence and uniqueness theorem fail for an ODE, several different solutions may be defined on the same domain. In such situations a new solution can be <strong>stitched</strong> together by joining two different solutions at a suitable junction point \( x_0 \). For this we require that the function values agree at the junction,</p>
+    <div class="eq">\( y_1(x_0) = y_2(x_0), \)</div>
+    <p>and that the derivatives agree there as well:</p>
+    <div class="eq">\( y_1'(x_0) = y_2'(x_0). \)</div>
+    <div class="note pink">
+      <div class="note-title">The stitching conditions</div>
+      The function value and the derivative must be equal on both sides of the stitching point. This method produces new solutions of the equation, as long as continuity and differentiability are preserved at the junction.
+    </div>
   </section>
 
   <section class="card">
-    <h2>Example</h2>
+    <h2>Example (Dr. Ofer Hadas)</h2>
+    <p><em>Prove that every solution of the equation</em></p>
+    <div class="eq">\( y' = 2 e^x \sqrt{|y|} \)</div>
+    <p><em>is a weakly increasing function, and find three different solutions of the equation that are defined on the whole real line and satisfy \( y(0) = 0 \).</em></p>
     <div class="split">
       <div>
-        <p>For</p>
-        <div class="eq">\( y' = 2 e^{x}\sqrt{|y|} \)</div>
-        <p>separation gives three solutions through \( (0,0) \):</p>
-        <div class="eq">\( y=(e^{x}-1)^2,\; y=-(e^{x}-1)^2,\; y\equiv 0. \)</div>
-        <p>Since \( \sqrt{|y|} \) is not Lipschitz at \( y=0 \), uniqueness fails there. So we may run along \( y=0 \) and branch off at \( x_0=0 \), where both value and slope are \( 0 \).</p>
+        <p><strong>Solution.</strong> Since \( y' = 2 e^x \sqrt{|y|} \geq 0 \) everywhere, every solution is weakly increasing. Separating variables:</p>
+        <div class="eq">\( \frac{dy}{\sqrt{|y|}} = 2 e^x\, dx. \)</div>
+        <p>Integrating both sides:</p>
+        <div class="eq">\( 2\, \mathrm{sgn}(y) \sqrt{|y|} = 2 e^x + C, \)</div>
+        <p>and we obtain three families of solutions:</p>
+        <div class="eq">\( y(x) = (e^x - 1)^2, \)</div>
+        <div class="eq">\( y(x) = -(e^x - 1)^2, \)</div>
+        <div class="eq">\( y(x) = 0. \)</div>
+        <p>Near the point \( x = 0 \) (where \( y = 0 \)) the conditions of the existence and uniqueness theorem fail, so it can be used as a <strong>stitching point</strong>.</p>
       </div>
       <figure class="panel">
-        <canvas id="cv-sew" class="square"></canvas>
-        <figcaption>The base solutions, and one stitched curve (amber): \( y=0 \) then \( y=(e^{x}-1)^2 \)</figcaption>
+        <canvas id="cv-stitch" class="square"></canvas>
+        <figcaption>The three solution branches through \( (0,0) \), and a stitched solution: \( y = 0 \) for \( x &lt; 0 \) joined to \( y = (e^x-1)^2 \) for \( x \geq 0 \)</figcaption>
       </figure>
+    </div>
+    <p>For example, the stitched function</p>
+    <div class="eq">\( y(x) = \begin{cases} (e^x - 1)^2, &amp; x \geq 0 \\ 0, &amp; x &lt; 0 \end{cases} \)</div>
+    <p>is continuous and differentiable on the whole real line — at \( x = 0 \) both pieces have value \( 0 \) and derivative \( 0 \) — so it is a solution on all of \( \mathbb{R} \).</p>
+    <div class="note amber">
+      <div class="note-title">Counting the solutions</div>
+      In this way one obtains \( 9 \) different solutions: for each of the \( 3 \) possibilities for the lower branch there are \( 3 \) possibilities for the upper branch.
     </div>
   </section>
 
@@ -53,28 +72,44 @@
 <script>
 addEventListener('DOMContentLoaded', () => {
   const { Plot, Timeline, COLORS } = ODE;
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
-  const plot = new Plot(document.getElementById('cv-sew'), { xmin: -1.6, xmax: 1.25, ymin: -1.6, ymax: 2.4, xtick: 1, ytick: 1 });
-  const up = x => (Math.exp(x) - 1) ** 2;
-  const dn = x => -((Math.exp(x) - 1) ** 2);
+
+  const plot = new Plot(document.getElementById('cv-stitch'), { xmin: -3, xmax: 1.4, ymin: -9, ymax: 9, xtick: 1, ytick: 3 });
+  const up = t => [t, Math.pow(Math.exp(t) - 1, 2)];
+  const down = t => [t, -Math.pow(Math.exp(t) - 1, 2)];
+  const stitched = t => [t, t < 0 ? 0 : Math.pow(Math.exp(t) - 1, 2)];
 
   const phases = [
-    { d: 1000, draw(p) { plot.param(x => [x, up(x)], -1.6, 1.25, { color: P.sky, width: 2, progress: p }); } },
-    { d: 900,  draw(p) { plot.param(x => [x, up(x)], -1.6, 1.25, { color: P.sky, width: 2 });
-                          plot.param(x => [x, dn(x)], -1.6, 1.25, { color: P.pink, width: 2, progress: p }); } },
-    { d: 700,  draw(p) { plot.param(x => [x, up(x)], -1.6, 1.25, { color: P.sky, width: 2 });
-                          plot.param(x => [x, dn(x)], -1.6, 1.25, { color: P.pink, width: 2 });
-                          plot.param(x => [x, 0], -1.6, 1.25, { color: P.magenta, width: 1.6, dash: [5, 5], progress: p }); } },
-    // the stitched solution: 0 for x<=0, then the upper branch
-    { d: 1600, draw(p) {
-        plot.param(x => [x, up(x)], -1.6, 1.25, { color: P.sky, width: 2 });
-        plot.param(x => [x, dn(x)], -1.6, 1.25, { color: P.pink, width: 2 });
-        plot.param(x => [x, 0], -1.6, 1.25, { color: P.magenta, width: 1.6, dash: [5, 5] });
-        const stitched = x => (x <= 0 ? 0 : up(x));
-        plot.param(x => [x, stitched(x)], -1.6, 1.25, { color: P.orange, width: 3.2, progress: p, head: true });
-        if (p > 0.5) plot.dot(0, 0, COLORS.white, 4);
-      } }
+    {
+      d: 1300,
+      draw(p) {
+        plot.param(up, 0, 1.4, { color: COLORS.teal, width: 2, progress: p });
+        if (p > 0.6) plot.label('y=(eˣ−1)²', 0.62, 5.6, COLORS.teal, 'right');
+      }
+    },
+    {
+      d: 1300,
+      draw(p) {
+        plot.param(down, -3, 0, { color: COLORS.pink, width: 2, progress: p });
+        if (p > 0.6) plot.label('y=−(eˣ−1)²', -2.85, -1.7, COLORS.pink, 'left');
+      }
+    },
+    {
+      d: 1100,
+      draw(p) {
+        plot.param(t => [t, 0], plot.xmin, plot.xmax, { color: COLORS.purple, width: 2, progress: p });
+        if (p > 0.6) plot.label('y=0', -2.4, 0.7, COLORS.purple);
+      }
+    },
+    {
+      d: 2200,
+      draw(p) {
+        plot.param(stitched, -3, 1.4, { color: COLORS.amber, width: 3.2, progress: p, head: true });
+        plot.dot(0, 0, COLORS.white, 4.5);
+        if (p > 0.55) plot.label('stitching point (0,0)', -0.15, 1.2, COLORS.white, 'right');
+      }
+    }
   ];
+
   new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
 });
 </script>

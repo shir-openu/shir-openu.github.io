@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
-<title>Orthogonal Families — First-Order ODE — Shir Sivroni</title>
-<meta name="description" content="Orthogonal trajectories of a one-parameter family of curves: the slope relation y' = -1/f, with animated examples (circles and radial lines, parabolas and ellipses). Interactive lesson by Shir Sivroni.">
+<title>Orthogonal Families of Curves — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="Orthogonal families of curves and how to find them by solving y' = -1/f(x,y): animated examples with lines, circles, parabolas and ellipses. Lesson by Shir Sivroni.">
 <meta name="author" content="Dr. Shir Sivroni">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/orthogonal-families.html">
@@ -12,53 +12,73 @@
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
-<body class="theme-purple">
+<body class="theme-wine">
 <div class="container">
 
   <nav>
     <a href="./" class="back-link">Back to First-Order ODE</a>
-    <span class="page-tag">Geometric Aspects</span>
+    <span class="page-tag">Envelopes &amp; Orthogonal Families</span>
   </nav>
 
-  <h1>Orthogonal Families</h1>
+  <h1>Orthogonal Families of Curves</h1>
   <div class="accent-bar"></div>
 
   <section class="card">
-    <p>A family \( F(x,y)=C \) has slope \( y'=f(x,y) \) (differentiate, eliminate \( C \)). An <strong>orthogonal trajectory</strong> crosses every member at a right angle, so it solves</p>
-    <div class="eq">\( y' = -\dfrac{1}{f(x,y)}. \)</div>
-    <div class="note purple">
-      <div class="note-title">The recipe</div>
-      Find the family's ODE, replace \( f \) by \( -1/f \), solve.
+    <div class="split">
+      <div>
+        <p>Two families of curves in the plane are called <strong>orthogonal</strong> if every curve of one family meets every curve of the other family at a right angle.</p>
+        <p>Usually, such a family is the general solution of a first-order ODE of the form</p>
+        <div class="eq">\( y' = f(x,y). \)</div>
+        <p>Two curves meet at a right angle if their slopes (the values of their derivatives) at the intersection point satisfy</p>
+        <div class="eq">\( k_1 k_2 = -1, \)</div>
+        <p>that is, the product of the slopes is \( -1 \). Therefore, for a curve of the orthogonal family, the slope at any point must be</p>
+        <div class="eq">\( y' = -\frac{1}{f(x,y)}. \)</div>
+        <p>This differential equation defines the curves orthogonal to those of the original family.</p>
+      </div>
+      <figure class="panel">
+        <canvas id="cv-lines" class="square"></canvas>
+        <figcaption>Two orthogonal families of lines: \( y - x = C \) and \( y + x = C \) — the slopes \( 1 \) and \( -1 \) multiply to \( -1 \)</figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="card">
-    <h2>Circles and radial lines</h2>
+    <h2>Finding the orthogonal family by solving an ODE</h2>
     <div class="split">
-      <div>
-        <p>The circles \( x^2+y^2=C \) satisfy \( y'=-x/y \). The orthogonal family solves \( y'=y/x \):</p>
-        <div class="eq">\( y = m x \)</div>
-        <p>— radial lines, each meeting every circle at \( 90^\circ \).</p>
-      </div>
       <figure class="panel">
         <canvas id="cv-circles" class="square"></canvas>
-        <figcaption>Circles \( x^2+y^2=C \) and their orthogonal radial lines \( y=mx \)</figcaption>
+        <figcaption>The circles \( x^2+y^2=C \) and the rays through the origin form orthogonal families</figcaption>
       </figure>
+      <div>
+        <p>For a family of curves that solves the ODE \( y' = f(x,y) \), the orthogonal family satisfies \( y' = -\dfrac{1}{f(x,y)} \), wherever the expression is defined. In practice:</p>
+        <p><strong>1.</strong> Differentiate the family equation \( f(x,y,c) = 0 \) to obtain an equation involving \( y' \).</p>
+        <p><strong>2.</strong> If the new equation still contains the constant \( c \), eliminate it by isolating \( c \) from the original equation.</p>
+        <p><strong>3.</strong> Isolate \( y' = g(x,y) \).</p>
+        <p><strong>4.</strong> The orthogonal family must satisfy \( y_\perp' = -\dfrac{1}{y'} \), but at the same point \( (x,y) \) — so the new equation for \( y_\perp \) is</p>
+        <div class="eq">\( y_\perp' = \frac{-1}{g(x,\, y_\perp)}. \)</div>
+      </div>
     </div>
   </section>
 
   <section class="card">
-    <h2>Parabolas and ellipses</h2>
+    <h2>Exercise</h2>
+    <p><em>Find the family of curves orthogonal to the parabolic family \( y^2 = Cx \).</em></p>
     <div class="split">
-      <figure class="panel">
-        <canvas id="cv-parab" class="square"></canvas>
-        <figcaption>Parabolas \( y^2=Cx \) and their orthogonal ellipses \( x^2+\tfrac{y^2}{2}=C \)</figcaption>
-      </figure>
       <div>
-        <p>The parabolas \( y^2=Cx \) satisfy \( y'=\dfrac{y}{2x} \). The orthogonal family solves \( y\,y'=-2x \):</p>
-        <div class="eq">\( x^2 + \dfrac{y^2}{2} = C \)</div>
-        <p>— ellipses crossing every parabola at a right angle.</p>
+        <p><strong>Solution.</strong> Differentiating both sides gives</p>
+        <div class="eq">\( 2y\, y' = C. \)</div>
+        <p>Isolate the constant: \( C = \dfrac{y^2}{x} \), and substitute it into the derivative equation:</p>
+        <div class="eq">\( 2y\, y' = \frac{y^2}{x} \;\Rightarrow\; y' = \frac{y}{2x}. \)</div>
+        <p>This is the differential equation of the parabolic family. The orthogonal equation is therefore</p>
+        <div class="eq">\( y' = -\frac{2x}{y}. \)</div>
+        <p>Solving it: \( y\, y' = -2x \), so</p>
+        <div class="eq">\( \frac{1}{2} y^2 = -x^2 + C \;\Rightarrow\; x^2 + \frac{y^2}{2} = C, \)</div>
+        <p>which is a family of <strong>ellipses</strong>.</p>
       </div>
+      <figure class="panel">
+        <canvas id="cv-parabolas" class="square"></canvas>
+        <figcaption>The parabolas \( y^2 = Cx \) and their orthogonal family — the ellipses \( x^2 + \frac{y^2}{2} = C \)</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -68,66 +88,91 @@
 <script src="assets/ode-anim.js"></script>
 <script>
 addEventListener('DOMContentLoaded', () => {
-  const { Plot, Timeline } = ODE;
-  /* palette: report40 bright accents */
-  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
+  const { Plot, Timeline, COLORS } = ODE;
 
-  /* --- Panel 1: concentric circles + orthogonal radial lines --- */
+  /* --- Panel 1: lines y = x + C vs y = -x + C --- */
   {
-    const plot = new Plot(document.getElementById('cv-circles'), { xmin: -4.4, xmax: 4.4, ymin: -4.4, ymax: 4.4 });
-    const radii = [1, 2, 3, 4];
-    const angles = [];
-    for (let k = 0; k < 12; k++) angles.push(k * Math.PI / 6);
-    const circle = r => t => [r * Math.cos(t), r * Math.sin(t)];
-    const radial = a => t => [t * Math.cos(a), t * Math.sin(a)];
-
-    const phases = [];
-    radii.forEach(r => phases.push({
-      d: 900,
-      draw(p) { plot.param(circle(r), 0, 2 * Math.PI, { color: P.pink, width: 1.8, progress: p }); }
-    }));
-    phases.push({
-      d: 1800,
-      draw(p) {
-        radii.forEach(r => plot.param(circle(r), 0, 2 * Math.PI, { color: P.pink, width: 1.8 }));
-        angles.forEach((a, i) => {
-          const local = Math.max(0, Math.min(1, p * 1.4 - i * 0.03));
-          plot.param(radial(a), -4.3, 4.3, { color: P.sky, width: 1.4, progress: local });
-        });
+    const plot = new Plot(document.getElementById('cv-lines'), { xmin: -3, xmax: 3, ymin: -3, ymax: 3 });
+    const Cs = [-3, -1.5, 0, 1.5, 3];
+    const phases = [
+      {
+        d: 1800,
+        draw(p) {
+          Cs.forEach((C, i) => {
+            const q = Math.min(1, Math.max(0, p * Cs.length - i));
+            plot.param(t => [t, t + C], plot.xmin, plot.xmax, { color: COLORS.teal, width: 1.8, progress: q });
+          });
+        }
+      },
+      {
+        d: 1800,
+        draw(p) {
+          Cs.forEach((C, i) => {
+            const q = Math.min(1, Math.max(0, p * Cs.length - i));
+            plot.param(t => [t, -t + C], plot.xmin, plot.xmax, { color: COLORS.pink, width: 1.8, progress: q });
+          });
+          if (p > 0.85) plot.label('k₁·k₂ = 1·(−1) = −1', 0.1, 2.6, COLORS.white, 'left');
+        }
       }
-    });
-    phases.push({
-      d: 700,
-      draw(p) {
-        radii.forEach(r => plot.param(circle(r), 0, 2 * Math.PI, { color: P.pink, width: 1.8 }));
-        angles.forEach(a => plot.param(radial(a), -4.3, 4.3, { color: P.sky, width: 1.4 }));
-        if (p > 0.2) plot.dot(2 * Math.cos(Math.PI / 6), 2 * Math.sin(Math.PI / 6), P.orange, 4.5);
-      }
-    });
+    ];
     new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
   }
 
-  /* --- Panel 2: parabolas y^2 = Cx + orthogonal ellipses --- */
+  /* --- Panel 2: circles vs rays through the origin --- */
   {
-    const plot = new Plot(document.getElementById('cv-parab'), { xmin: -4.4, xmax: 4.4, ymin: -4.4, ymax: 4.4 });
-    const Cpar = [-4, -2, 2, 4];
-    const Cell = [2, 4, 6, 8];
-    const parab = C => t => [t * t / C, t];
-    const ellipse = C => t => [Math.sqrt(C) * Math.cos(t), Math.sqrt(2 * C) * Math.sin(t)];
-
-    const phases = [];
-    phases.push({
-      d: 1400,
-      draw(p) { Cpar.forEach(C => plot.param(parab(C), -4.2, 4.2, { color: P.green, width: 1.7, progress: p })); }
-    });
-    Cell.forEach((C, i) => phases.push({
-      d: 800,
-      draw(p) {
-        Cpar.forEach(c => plot.param(parab(c), -4.2, 4.2, { color: P.green, width: 1.7 }));
-        for (let k = 0; k < i; k++) plot.param(ellipse(Cell[k]), 0, 2 * Math.PI, { color: P.lilac, width: 1.8 });
-        plot.param(ellipse(C), 0, 2 * Math.PI, { color: P.lilac, width: 1.8, progress: p });
+    const plot = new Plot(document.getElementById('cv-circles'), { xmin: -3, xmax: 3, ymin: -3, ymax: 3 });
+    const radii = [0.8, 1.5, 2.2, 2.9];
+    const angles = [0, 30, 60, 90, 120, 150].map(d => d * Math.PI / 180);
+    const phases = [
+      {
+        d: 1800,
+        draw(p) {
+          radii.forEach((r, i) => {
+            const q = Math.min(1, Math.max(0, p * radii.length - i));
+            plot.param(t => [r * Math.cos(t), r * Math.sin(t)], 0, 2 * Math.PI, { color: COLORS.teal, width: 1.8, progress: q });
+          });
+        }
+      },
+      {
+        d: 1800,
+        draw(p) {
+          angles.forEach((a, i) => {
+            const q = Math.min(1, Math.max(0, p * angles.length - i));
+            plot.param(t => [t * Math.cos(a), t * Math.sin(a)], -3.2, 3.2, { color: COLORS.pink, width: 1.6, progress: q });
+          });
+        }
       }
-    }));
+    ];
+    new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+  }
+
+  /* --- Panel 3: parabolas y^2 = Cx, then ellipses x^2 + y^2/2 = C --- */
+  {
+    const plot = new Plot(document.getElementById('cv-parabolas'), { xmin: -3, xmax: 3, ymin: -3, ymax: 3 });
+    const Cs = [0.8, 2, 4.5];
+    const phases = [
+      {
+        d: 2000,
+        draw(p) {
+          Cs.forEach((C, i) => {
+            const q = Math.min(1, Math.max(0, p * Cs.length - i));
+            plot.param(t => [t * t / C, t], -3.1, 3.1, { color: COLORS.teal, width: 1.8, progress: q });
+            plot.param(t => [-t * t / C, t], -3.1, 3.1, { color: COLORS.teal, width: 1.8, progress: q });
+          });
+        }
+      },
+      {
+        d: 2200,
+        draw(p) {
+          Cs.forEach((C, i) => {
+            const q = Math.min(1, Math.max(0, p * Cs.length - i));
+            const a = Math.sqrt(C * 0.55), b = Math.sqrt(2 * C * 0.55);
+            plot.param(t => [a * Math.cos(t), b * Math.sin(t)], 0, 2 * Math.PI, { color: COLORS.pink, width: 1.8, progress: q });
+          });
+          if (p > 0.85) plot.label('x² + y²/2 = C', 0.15, -2.55, COLORS.pink, 'left');
+        }
+      }
+    ];
     new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
   }
 });
