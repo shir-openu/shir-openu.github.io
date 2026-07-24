@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Introduction: y' = y — First-Order ODE — Shir Sivroni</title>
+<meta name="description" content="A first look at a first-order ODE: the equation y' = y, its direction field, and its exponential solution family. Interactive lesson by Shir Sivroni.">
+<meta name="author" content="Dr. Shir Sivroni">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shir-openu.github.io/ode-first-order/introduction.html">
+<link rel="stylesheet" href="assets/lesson.css">
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body class="theme-teal">
+<div class="container">
+
+  <nav>
+    <a href="./" class="back-link">Back to First-Order ODE</a>
+    <span class="page-tag">Introduction</span>
+  </nav>
+
+  <h1>A First Equation: \( y' = y \)</h1>
+  <div class="accent-bar"></div>
+
+  <section class="card">
+    <p>A first-order ODE assigns to each point \( (x,y) \) a slope \( y' = f(x,y) \). A solution is a curve whose tangent matches that slope everywhere.</p>
+    <div class="split">
+      <div>
+        <p>The simplest interesting case is</p>
+        <div class="eq">\( y' = y, \)</div>
+        <p>where the slope equals the height. Its solutions are the exponentials</p>
+        <div class="eq">\( y = C e^{x}. \)</div>
+        <p>One curve passes through each point, filling the plane.</p>
+      </div>
+      <figure class="panel">
+        <canvas id="cv-intro" class="square"></canvas>
+        <figcaption>Direction field of \( y'=y \) and the solutions \( y=Ce^{x} \)</figcaption>
+      </figure>
+    </div>
+    <div class="note">
+      <div class="note-title">Read it geometrically</div>
+      Below the \( x \)-axis the slopes point down toward it; above, they climb away from it. The field alone already reveals the exponential behaviour.
+    </div>
+  </section>
+
+  <div class="footer">&copy; Developed by Shir Sivroni</div>
+</div>
+
+<script src="assets/ode-anim.js"></script>
+<script>
+addEventListener('DOMContentLoaded', () => {
+  const { Plot, Timeline, COLORS, fieldPoints, drawField, solutionPath } = ODE;
+  const P = { orange: '#ff9b1e', pink: '#ea5cd5', magenta: '#d41bb9', lilac: '#bb7be6', sky: '#61a3ed', green: '#39d461' };
+  const f = (x, y) => y;
+  const plot = new Plot(document.getElementById('cv-intro'), { xmin: -2.6, xmax: 2.6, ymin: -2.6, ymax: 2.6 });
+  const pts = fieldPoints(plot, f, 15, 15);
+  const sols = [
+    { p: solutionPath(plot, f, 0, 0.5,  { dt: 0.01, ybound: 30 }), color: P.orange },
+    { p: solutionPath(plot, f, 0, 1,    { dt: 0.01, ybound: 30 }), color: P.pink },
+    { p: solutionPath(plot, f, 0, -0.7, { dt: 0.01, ybound: 30 }), color: P.lilac }
+  ];
+  const phases = [
+    { d: 2200, draw(p) { drawField(plot, pts, p, P.sky, true); } }
+  ];
+  sols.forEach((s, i) => phases.push({
+    d: 1300,
+    draw(p) {
+      drawField(plot, pts, 1, P.sky, true);
+      for (let k = 0; k < i; k++) plot.path(sols[k].p, { color: sols[k].color });
+      plot.path(s.p, { color: s.color, progress: p, head: true, width: 2.6 });
+    }
+  }));
+  new Timeline(plot.cv, () => { plot.clear(); plot.axes(); }, phases);
+});
+</script>
+</body>
+</html>
