@@ -1,3 +1,9 @@
 
 # Superseded Hebrew Moodle-export lesson pages - kept locally, NOT deployed
 ode-first-order/*_OLD.html
+
+# Local only (2026-08-16). Nothing here should reach the public site.
+# the pre-darkening originals: kept on disk, never published
+media_OLD/
+# before/after screenshots from the white-background audit
+_AUDIT_2026-08-16/

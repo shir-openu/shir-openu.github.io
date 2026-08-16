@@ -10,7 +10,11 @@
 <link rel="canonical" href="https://shir-openu.github.io/ode-first-order/envelope-animated.html">
 <link rel="stylesheet" href="assets/lesson.css">
 <style>
-  .panel img { display: block; width: 100%; border-radius: 8px; background: #ffffff; }
+  .panel img { display: block; width: 100%; border-radius: 8px; background: transparent; }
+  /* was #ffffff. The panel behind it is rgba(10,8,16,.55) - a dark card - so a
+     white backdrop here put a white square on a #120a12 page wherever the image
+     had any transparency. The opaque images had the white baked into their own
+     pixels and were fixed separately by tools/darken_media.py. 2026-08-16. */
 </style>
 <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] } };</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
@@ -50,5 +54,9 @@
 
   <div class="footer">&copy; Developed by Shir Sivroni</div>
 </div>
+
+<footer class="site-copyright" style="margin:56px auto 0;padding:20px 22px 30px;max-width:1100px;border-top:1px solid rgba(255,255,255,.10);color:#8b8794;font:0.88rem/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;text-align:center;position:relative;z-index:1;">
+  &copy; Shir Sivroni
+</footer>
 </body>
 </html>

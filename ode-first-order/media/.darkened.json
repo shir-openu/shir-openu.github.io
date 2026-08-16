@@ -1,0 +1,165 @@
+{
+ "files": {
+  "bg_decay.gif": {
+   "before": 0.0,
+   "after": 0.0,
+   "frames": 10
+  },
+  "bg_free_fall.gif": {
+   "before": 0.01,
+   "after": 0.0,
+   "frames": 37
+  },
+  "bg_pendulum.gif": {
+   "before": 0.0,
+   "after": 0.003,
+   "frames": 30
+  },
+  "bg_spring.gif": {
+   "before": 0.0,
+   "after": 0.009,
+   "frames": 60
+  },
+  "bg_virus.gif": {
+   "before": 0.0,
+   "after": 0.0,
+   "frames": 6
+  },
+  "cub_isoclines.gif": {
+   "before": 0.97,
+   "after": 0.006,
+   "frames": 4
+  },
+  "cub_isoclines_on_field.gif": {
+   "before": 0.0,
+   "after": 0.0,
+   "frames": 136
+  },
+  "cub_solutions_on_field.gif": {
+   "before": 0.812,
+   "after": 0.006,
+   "frames": 120
+  },
+  "cub_surface_rotation.gif": {
+   "before": 0.891,
+   "after": 0.003,
+   "frames": 360
+  },
+  "dd_curve_family.gif": {
+   "before": 0.0,
+   "after": 0.012,
+   "frames": 75
+  },
+  "dd_half_circles.gif": {
+   "before": 0.0,
+   "after": 0.024,
+   "frames": 125
+  },
+  "dd_parabola_family.gif": {
+   "before": 0.005,
+   "after": 0.021,
+   "frames": 68
+  },
+  "env_astroid.gif": {
+   "before": 0.849,
+   "after": 0.009,
+   "frames": 128
+  },
+  "env_family_lines.gif": {
+   "before": 0.955,
+   "after": 0.007,
+   "frames": 99
+  },
+  "exu_unique_existence.gif": {
+   "before": 0.941,
+   "after": 0.011,
+   "frames": 80
+  },
+  "intro_yprime_y.gif": {
+   "before": 0.963,
+   "after": 0.008,
+   "frames": 93
+  },
+  "lin_isoclines_building.gif": {
+   "before": 0.927,
+   "after": 0.017,
+   "frames": 29
+  },
+  "lin_isoclines_field.gif": {
+   "before": 0.0,
+   "after": 0.0,
+   "frames": 200
+  },
+  "lin_solutions_a.gif": {
+   "before": 0.0,
+   "after": 0.001,
+   "frames": 20
+  },
+  "lin_solutions_b.gif": {
+   "before": 0.0,
+   "after": 0.001,
+   "frames": 20
+  },
+  "lin_surface.png": {
+   "before": 0.882,
+   "after": 0.002,
+   "frames": 1
+  },
+  "lin_three_lines.png": {
+   "before": 0.954,
+   "after": 0.0,
+   "frames": 1
+  },
+  "orth_circles.gif": {
+   "before": 0.933,
+   "after": 0.01,
+   "frames": 80
+  },
+  "orth_lines.gif": {
+   "before": 0.929,
+   "after": 0.01,
+   "frames": 89
+  },
+  "orth_parabola_ellipse.gif": {
+   "before": 0.962,
+   "after": 0.008,
+   "frames": 80
+  },
+  "par_circle_isoclines.gif": {
+   "before": 0.971,
+   "after": 0.005,
+   "frames": 40
+  },
+  "par_heatmap.png": {
+   "before": 0.454,
+   "after": 0.004,
+   "frames": 1
+  },
+  "par_sections.gif": {
+   "before": 0.547,
+   "after": 0.001,
+   "frames": 36
+  },
+  "par_solutions_field.gif": {
+   "before": 0.808,
+   "after": 0.006,
+   "frames": 100
+  },
+  "sew_stitched.gif": {
+   "before": 0.952,
+   "after": 0.024,
+   "frames": 126
+  },
+  "sing_singularity.gif": {
+   "before": 0.914,
+   "after": 0.007,
+   "frames": 132
+  }
+ },
+ "backup": "media_OLD",
+ "bg": [
+  18,
+  10,
+  18
+ ]
+}
