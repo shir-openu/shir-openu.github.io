@@ -327,9 +327,16 @@
   .card-teal::before { background: #169999; }
   .card-teal:hover { border-color: rgba(22, 153, 153, 0.5); }
 
-  .card-pink { border-color: rgba(255, 77, 184, 0.3); }
-  .card-pink::before { background: #ff4db8; }
-  .card-pink:hover { border-color: rgba(255, 77, 184, 0.5); }
+  /* 2026-08-29: pink card made more pink.
+     PREVIOUS VALUES, revert to these to undo:
+       .card-pink { border-color: rgba(255, 77, 184, 0.3); }
+       .card-pink::before { background: #ff4db8; }
+       .card-pink:hover { border-color: rgba(255, 77, 184, 0.5); }
+     The wave stroke and .particle-pink elsewhere in this file still use #ff4db8
+     and were deliberately left unchanged. */
+  .card-pink { border-color: rgba(255, 45, 155, 0.3); }
+  .card-pink::before { background: #ff2d9b; }
+  .card-pink:hover { border-color: rgba(255, 45, 155, 0.5); }
 
   .card-wine { border-color: rgba(153, 15, 35, 0.3); }
   .card-wine::before { background: #990f23; }
