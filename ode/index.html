@@ -334,9 +334,14 @@
        .card-pink:hover { border-color: rgba(255, 77, 184, 0.5); }
      The wave stroke and .particle-pink elsewhere in this file still use #ff4db8
      and were deliberately left unchanged. */
-  .card-pink { border-color: rgba(255, 45, 155, 0.3); }
-  .card-pink::before { background: #ff2d9b; }
-  .card-pink:hover { border-color: rgba(255, 45, 155, 0.5); }
+  /* Same glass-card mechanism as the other three cards - only the pink is
+     turned up so it actually reads. To revert to a card identical in weight
+     to teal/wine/purple, delete the opacity and .card-title rules below. */
+  .card-pink { border-color: rgba(255, 45, 155, 0.55); }
+  .card-pink::before { background: #ff2d9b; opacity: 0.22; }
+  .card-pink:hover { border-color: rgba(255, 45, 155, 0.8); }
+  .card-pink:hover::before { opacity: 0.3; }
+  .card-pink .card-title { color: #ffa3d4; }
 
   .card-wine { border-color: rgba(153, 15, 35, 0.3); }
   .card-wine::before { background: #990f23; }
