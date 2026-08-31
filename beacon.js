@@ -21,6 +21,16 @@
  * sessionStorage, so it groups the pages of one visit and disappears with the
  * tab - it cannot follow anybody between visits or between sites.
  *
+ * THE OWNER FLAG
+ * --------------
+ * The one thing kept between visits, and only for the site's own author: open
+ * https://shir-openu.github.io/?owner=1 once in a browser and it writes
+ * sv_owner into localStorage, so every later load from that browser posts
+ * owner = true and is left out of the reader counts. ?owner=0 removes it. It
+ * marks a browser, never a person: another browser, a phone, a private window
+ * or cleared site data all start unflagged, and it cannot reach backwards to
+ * rows already recorded.
+ *
  * The key below is the PUBLIC anon key, the same one in js/core_fab.js. The
  * page_views table grants anon INSERT and nothing else, so this key can add a
  * row and can neither read the log nor change it.
@@ -42,6 +52,16 @@
       }
     } catch (e) { sid = 'nostore'; }
 
+    // Her own visits. localStorage, not sessionStorage: this one has to outlive
+    // the tab, otherwise she would have to re-flag herself every single time.
+    var own = false;
+    try {
+      var q = location.search || '';
+      if (/[?&]owner=1(&|$)/.test(q)) localStorage.setItem('sv_owner', '1');
+      else if (/[?&]owner=0(&|$)/.test(q)) localStorage.removeItem('sv_owner');
+      own = localStorage.getItem('sv_owner') === '1';
+    } catch (e) { own = false; }
+
     var tz = null, off = null;
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || null; } catch (e) {}
     try { off = new Date().getTimezoneOffset(); } catch (e) {}
@@ -56,7 +76,8 @@
       client_utc_offset: off,
       client_started_at: new Date().toISOString(),
       screen: (window.screen ? screen.width + 'x' + screen.height : null),
-      lang: navigator.language || null
+      lang: navigator.language || null,
+      owner: own
     };
 
     // fetch, not sendBeacon: sendBeacon cannot set the apikey header PostgREST
