@@ -209,7 +209,27 @@ table.classify th {
 
 @media (max-width: 760px) {
   .container { padding: 0 18px 30px; }
-  .split { grid-template-columns: 1fr; }
+
+  /* 2026-09-03. `1fr` IS `minmax(auto, 1fr)`, AND `auto` FLOORS AT MIN-CONTENT.
+     Stacking .split to one column was already right and was not enough: a grid track's
+     automatic minimum is the min-content width of its widest item, and a long unbreakable
+     equation has a large one. On example-3.html the single column measured 424px inside a
+     316px box, so the page was 461px wide at a 390px viewport.
+
+     AND IT DID NOT SCROLL. `body { overflow-x: hidden }` clips instead, so those 71px were
+     not off to the side -- they were unreachable. Verified by scrolling: window.scrollTo(300,0)
+     left scrollX at 0. A reader on a phone simply could not see part of the formula.
+
+     minmax(0, 1fr) removes the min-content floor; the equation then scrolls inside its own
+     box rather than pushing the page. Measured across four lesson pages: example-3 461 -> 390,
+     singularity-definitions 413 -> 390 (its table), introduction and stitching-solutions
+     unchanged at 390. Page heights moved by at most 3px, so nothing reflowed into a
+     cramped stack, and before/after screenshots at the same scroll position are identical. */
+  .split { grid-template-columns: minmax(0, 1fr); }
+  mjx-container { display: inline-block; max-width: 100%;
+                  overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+  table { display: block; overflow-x: auto; max-width: 100%; }
+
   h1 { font-size: 1.5rem; }
   section.card { padding: 20px 18px; }
 }
