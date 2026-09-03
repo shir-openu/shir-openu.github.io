@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<title>Page not found — Shir Sivroni, PhD</title>
+<meta name="description" content="That address is not on this site. The portfolio, the publications and the interactive tools are one click away.">
+<!-- A 404 must not be indexed: it is not a page anyone should arrive at from a search
+     result. The rest of this site sets `index, follow`; this one is the exception. -->
+<meta name="robots" content="noindex, follow">
+<style>
+/* THE THIRD SITE, AND THE ONE MOST LIKELY TO BE ARRIVED AT WRONG. shir-openu.github.io is
+   the root domain: every stale link, every mistyped path and every URL in an old email
+   lands here. GitHub answered all of them with its own 9,379-byte "File not found", which
+   names nothing and offers no route anywhere. The showcase and the platform each got a
+   page of their own today; this is the last of the three.
+
+   `/ODE/` was one of the addresses tested -- a real reader's capitalisation, a real 404.
+
+   The site's own base style, copied from index.html rather than invented: the same
+   background, the same type, the same footer colour and rule. #6e6e6e on #f5f6f8 is
+   4.72:1, which is the value this footer was raised to an hour ago. */
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f6f8; color: #1a1a1a;
+       line-height: 1.6; margin: 0; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 56px 22px 0; }
+h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
+.lead { color: #3d3d3d; margin: 0 0 1.6rem; }
+ul.ways { list-style: none; padding: 0; margin: 0; }
+ul.ways li { margin-bottom: .85rem; line-height: 1.5;
+             padding-inline-start: 1.1rem; text-indent: -1.1rem; }
+ul.ways a { color: #0b5cab; font-weight: 600; }
+ul.ways span { color: #55606d; font-weight: 400; }
+.footer { text-align: center; padding: 24px 20px; font-size: 0.8em; color: #6e6e6e;
+          border-top: 1px solid #e5e5e5; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>That page is not on this site</h1>
+  <p class="lead">Nothing is wrong with your browser. Either the address never existed, or
+     it moved and something still links to it — if it was the second, that is my fault and
+     not yours.</p>
+
+  <ul class="ways">
+    <li><a href="/">The portfolio</a> <span>— everything, from the top</span></li>
+    <li><a href="/publications/">Scientific publications</a>
+        <span>— computational electrophysiology and neural decoding</span></li>
+    <li><a href="/ode-first-order/">First-order ODE</a>
+        <span>— animated lessons, direction fields and isoclines</span></li>
+    <li><a href="/hopfield/">Hopfield networks</a> <span>— energy landscape visualisations</span></li>
+    <li><a href="https://shir-openu.github.io/meta-tagging-platform-prototype/">Meta-Tagging Platform</a>
+        <span>— score rival definitions against a corpus</span></li>
+    <li><a href="/demos/">Small demos</a> <span>— solvers and interactive maths</span></li>
+    <li><a href="/kids/">Kids maths games</a> <span>— geometry for children</span></li>
+  </ul>
+</div>
+
+<div class="footer">&copy; Shir Sivroni</div>
+
+<!-- page-load counter; GitHub publishes no analytics for Pages. -->
+<script src="/beacon.js" defer></script>
+</body>
+</html>
