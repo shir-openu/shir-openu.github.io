@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# Superseded preprint PDFs. A PDF cannot carry <meta name="robots">, and GitHub
+# Pages will not set an X-Robots-Tag, so this file is the only lever. The files stay
+# where they are, so any link somebody already has keeps working; they simply stop
+# competing in search with meta-tagging-preprint_v21.pdf, which is the one the site
+# links. To undo: delete these three lines.
+Disallow: /meta-tagging-showcase/meta-tagging-preprint_v19.pdf
+Disallow: /meta-tagging-showcase/meta-tagging-preprint_v19_SUMMARY-VIEW.pdf
+Disallow: /meta-tagging-showcase/preprints/meta-tagging-preprint_v20.pdf
+
 Sitemap: https://shir-openu.github.io/sitemap.xml
