@@ -15,6 +15,14 @@
  * estimate without touching an IP address), screen size, language, and a random
  * id kept in sessionStorage.
  *
+ * CLICKS OUT (added 11 September 2026)
+ * -----------------------------------
+ * A second kind of row, path "/__click/zenodo/...", "/__click/file/..." or
+ * "/__click/out/...", written when a visitor clicks a link that leaves the page.
+ * This is the only way a Zenodo download can ever carry a country: Zenodo itself
+ * collects none, so the country has to be measured on the click before the
+ * browser goes. Clicks are counted as clicks, never as page views.
+ *
  * WHAT IT DOES NOT DO
  * -------------------
  * No cookie. No IP stored. No fingerprint. The session id lives in
@@ -82,17 +90,64 @@
 
     // fetch, not sendBeacon: sendBeacon cannot set the apikey header PostgREST
     // needs. keepalive lets it finish if the visitor navigates away at once.
-    fetch('https://luhgdmzksitdkbysdfbr.supabase.co/rest/v1/page_views', {
-      method: 'POST',
-      mode: 'cors',
-      keepalive: true,
-      headers: {
-        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1aGdkbXprc2l0ZGtieXNkZmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MjU0MDMsImV4cCI6MjA4MDEwMTQwM30.kxiMmJE4N5U5pM-3d81URKCwZ5PSsE-19AIr5KWOMlQ',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1aGdkbXprc2l0ZGtieXNkZmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MjU0MDMsImV4cCI6MjA4MDEwMTQwM30.kxiMmJE4N5U5pM-3d81URKCwZ5PSsE-19AIr5KWOMlQ',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify([row])
-    }).catch(function () { /* a page must never break because a count failed */ });
+    function send(r) {
+      fetch('https://luhgdmzksitdkbysdfbr.supabase.co/rest/v1/page_views', {
+        method: 'POST',
+        mode: 'cors',
+        keepalive: true,
+        headers: {
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1aGdkbXprc2l0ZGtieXNkZmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MjU0MDMsImV4cCI6MjA4MDEwMTQwM30.kxiMmJE4N5U5pM-3d81URKCwZ5PSsE-19AIr5KWOMlQ',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1aGdkbXprc2l0ZGtieXNkZmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MjU0MDMsImV4cCI6MjA4MDEwMTQwM30.kxiMmJE4N5U5pM-3d81URKCwZ5PSsE-19AIr5KWOMlQ',
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify([r])
+      }).catch(function () { /* a page must never break because a count failed */ });
+    }
+
+    send(row);
+
+    // CLICKS THAT LEAVE THE PAGE
+    // --------------------------
+    // Added 11 September 2026 on her instruction. The download counter on a Zenodo
+    // record can never say where a download came from - Zenodo does not collect a
+    // country for any view or download, and publishes none to anyone. But the click
+    // on the link that LEADS there happens on this page, where the server already
+    // measures the country from the request header. So the click is recorded here,
+    // one row, the instant before the browser leaves.
+    //
+    // The row goes into page_views like every other row, with a path beginning
+    // "/__click/". pages_usage_analysis.py splits those out, so a click is never
+    // added to the page-view count: it is a different event and is counted once, as
+    // itself. keepalive is what lets it survive the navigation that follows.
+    var CLICKY = /(^|\.)zenodo\.org$|(^|\.)doi\.org$/i;
+    var FILEY = /\.(pdf|zip|docx?|csv|xlsx?|pptx?|tgz)(\?|#|$)/i;
+    document.addEventListener('click', function (ev) {
+      try {
+        var t = ev.target;
+        var a = (t && t.closest) ? t.closest('a[href]') : null;
+        if (!a) return;
+        var u;
+        try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
+        if (u.protocol !== 'http:' && u.protocol !== 'https:') return;
+        var kind = CLICKY.test(u.hostname) ? 'zenodo'
+                 : (FILEY.test(u.pathname) ? 'file'
+                 : (u.hostname !== host ? 'out' : null));
+        if (!kind) return;
+        send({
+          site: host,
+          path: '/__click/' + kind + (location.pathname || '/'),
+          title: ('click -> ' + u.href).slice(0, 300),
+          referrer: location.href,
+          session_id: sid,
+          client_timezone: tz,
+          client_utc_offset: off,
+          client_started_at: new Date().toISOString(),
+          screen: (window.screen ? screen.width + 'x' + screen.height : null),
+          lang: navigator.language || null,
+          owner: own
+        });
+      } catch (e) { /* a page must never break because a count failed */ }
+    }, true);
   } catch (e) { /* same rule */ }
 })();
