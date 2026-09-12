@@ -120,7 +120,8 @@
     // "/__click/". pages_usage_analysis.py splits those out, so a click is never
     // added to the page-view count: it is a different event and is counted once, as
     // itself. keepalive is what lets it survive the navigation that follows.
-    var CLICKY = /(^|\.)zenodo\.org$|(^|\.)doi\.org$/i;
+    var ZEN = /(^|\.)zenodo\.org$/i;
+    var DOI = /(^|\.)doi\.org$|(^|\.)arxiv\.org$/i;
     var FILEY = /\.(pdf|zip|docx?|csv|xlsx?|pptx?|tgz)(\?|#|$)/i;
     document.addEventListener('click', function (ev) {
       try {
@@ -130,9 +131,13 @@
         var u;
         try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
         if (u.protocol !== 'http:' && u.protocol !== 'https:') return;
-        var kind = CLICKY.test(u.hostname) ? 'zenodo'
+        // doi.org and arxiv.org are NOT zenodo. The paper pages link out to a
+        // publisher DOI or an arXiv abstract, and filing those under "zenodo"
+        // would put another publisher's traffic in her Zenodo column.
+        var kind = ZEN.test(u.hostname) ? 'zenodo'
+                 : (DOI.test(u.hostname) ? 'paper'
                  : (FILEY.test(u.pathname) ? 'file'
-                 : (u.hostname !== host ? 'out' : null));
+                 : (u.hostname !== host ? 'out' : null)));
         if (!kind) return;
         send({
           site: host,
