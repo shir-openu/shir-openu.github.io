@@ -68,6 +68,12 @@ body {
   padding: 0 20px;
 }
 
+.section-heading {
+  font-size: 1.15em;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
 .pub-card {
   background: #fff;
   border: 1px solid #ddd;
@@ -147,7 +153,8 @@ body {
   </div>
 </div>
 
-<div class="section">
+<section class="section" id="preprints" aria-labelledby="preprints-heading">
+  <h2 class="section-heading" id="preprints-heading">Preprints</h2>
 
   <div class="pub-card" id="uphill-topology">
     <span class="pub-label label-preprint">Preprint</span>
@@ -175,6 +182,23 @@ body {
       Local population activity substantially outperforms inter-area correlations in predicting perceptual choice after stimulus onset (64.5% vs. 57.2%), while both contribute equally before stimulus. Analyzed simultaneous multi-region Neuropixels recordings, demonstrating a dual-mechanism model where pre-stimulus inter-area dynamics set the stage for post-stimulus local computation.
     </div>
   </div>
+
+  <div class="pub-card" id="meta-tagging-preprint">
+    <span class="pub-label label-preprint">Preprint</span>
+    <div class="pub-cite">
+      <a href="https://zenodo.org/records/22127315" target="_blank" rel="noopener noreferrer">
+        <strong>Sivroni S</strong> (2026). From Tags to Testable Definitions: A verbatim-grounded framework for cross-disciplinary concept analysis. <em>Zenodo</em>. doi:10.5281/zenodo.22127315
+      </a>
+    </div>
+    <div class="pub-desc">
+      A framework for comparing definitions across disciplines using tags grounded in exact source sentences.
+    </div>
+  </div>
+
+</section>
+
+<section class="section" id="journal-articles" aria-labelledby="journal-articles-heading">
+  <h2 class="section-heading" id="journal-articles-heading">Journal Articles</h2>
 
   <div class="pub-card">
     <span class="pub-label label-published">Published</span>
@@ -213,7 +237,7 @@ body {
   </div>
 
 
-</div>
+</section>
 
 <div class="footer">
   &copy; Shir Sivroni
