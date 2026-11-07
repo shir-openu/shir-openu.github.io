@@ -148,7 +148,7 @@ body {
 }
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 .project-card {
@@ -255,6 +255,12 @@ body {
       <div class="card-title">Hopfield Neural Networks</div>
       <div class="card-desc">Energy landscape visualization, 3-neuron animation, and full network implementation with interactive controls.</div>
       <div class="card-tags">JavaScript, Canvas, Neural Networks</div>
+    </a>
+
+    <a class="project-card" href="https://diversity-tagger.vercel.app" target="_blank" rel="noopener noreferrer">
+      <div class="card-title">DIVERSITY Tagger</div>
+      <div class="card-desc">Guided annotation of diversity in NLP: tag passages, consult the method, and export your annotations.</div>
+      <div class="card-tags">JavaScript, Claude API, Annotation, NLP</div>
     </a>
 
     <a class="project-card" href="https://shir-openu.github.io/meta-tagging-platform-prototype/" target="_blank">
